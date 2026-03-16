@@ -6,6 +6,12 @@
     <title>Professional Portfolio</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #0b0f19; color: #e2e8f0; margin: 0; padding: 0; }
+        
+        /* Навигация */
+        nav { background: rgba(11, 15, 25, 0.9); padding: 20px; text-align: center; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #334155; }
+        nav a { color: #94a3b8; margin: 0 15px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        nav a:hover { color: #38bdf8; }
+
         .container { max-width: 1000px; margin: auto; padding: 40px 20px; }
         header { text-align: center; padding: 60px 0; }
         h1 { font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
@@ -17,16 +23,24 @@
         .card img { width: 100%; height: 200px; object-fit: cover; }
         .info { padding: 20px; }
         .btn { display: inline-block; margin-top: 15px; padding: 10px 20px; background: #38bdf8; color: #0b0f19; text-decoration: none; border-radius: 6px; font-weight: bold; }
+        footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
     </style>
 </head>
 <body>
+
+    <nav>
+        <a href="#posters">Posters</a>
+        <a href="#websites">Websites</a>
+        <a href="#logos">Logos</a>
+    </nav>
+
     <div class="container">
         <header>
             <h1>My Portfolio</h1>
             <p class="subtitle">Design & Web Solutions</p>
         </header>
 
-        <h2>Event Posters</h2>
+        <h2 id="posters">Event Posters</h2>
         <div class="grid">
             <div class="card">
                 <img src="poster.jpg" alt="Poster Design">
@@ -37,7 +51,7 @@
             </div>
         </div>
 
-        <h2>Business Websites</h2>
+        <h2 id="websites">Business Websites</h2>
         <div class="grid">
             <div class="card">
                 <div class="info">
@@ -48,9 +62,22 @@
             </div>
         </div>
 
+        <h2 id="logos">Logo Design</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="logo.png" alt="Logo Design">
+                <div class="info">
+                    <h3>Brand Identity</h3>
+                    <p>Minimalist and professional logo.</p>
+                    <a href="logos.html" class="btn">View All Logos</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <footer>
+        &copy; 2026 Portfolio. Built with passion.
+    </footer>
 </body>
 </html>
+
