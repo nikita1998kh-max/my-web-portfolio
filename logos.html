@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <title>Мои Логотипы</title>
     <style>
+        /* Тот самый зеленый градиент, как на главной */
         body { 
-            background: linear-gradient(135deg, #0b0f19, #1a3a2d); 
-            padding: 40px; 
-            color: white; 
-            font-family: sans-serif;
+            background: linear-gradient(135deg, #1a3a2d, #0b0f19); 
+            min-height: 100vh;
             margin: 0;
+            padding: 40px;
+            color: white;
+            font-family: sans-serif;
         }
-        h1 { text-align: center; color: #38bdf8; }
+        h1 { text-align: center; color: #ffffff; margin-bottom: 40px; }
         .gallery { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
@@ -26,12 +28,12 @@
             border: 2px solid #38bdf8;
             display: block;
         }
-        .back-link { color: #fff; text-decoration: none; display: block; margin-bottom: 20px; }
+        .back-link { color: #38bdf8; text-decoration: none; display: block; margin-bottom: 20px; font-size: 18px; }
     </style>
 </head>
 <body>
     <a href="index.html" class="back-link">← Назад на главную</a>
-    <h1>Логотипы</h1>
+    <h1>Мои Логотипы</h1>
     
     <div class="gallery">
         <div class="card"><img src="logo-01.png.png" alt="Логотип"></div>
