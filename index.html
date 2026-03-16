@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0b0f19; color: #e2e8f0; margin: 0; padding: 0; }
+        .container { max-width: 1000px; margin: auto; padding: 40px 20px; }
+        header { text-align: center; padding: 60px 0; }
+        h1 { font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
+        .subtitle { color: #94a3b8; font-size: 1.2rem; }
+        
+        h2 { border-left: 4px solid #38bdf8; padding-left: 15px; margin: 50px 0 30px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card { background: #1e293b; border-radius: 12px; overflow: hidden; transition: 0.3s; border: 1px solid #334155; }
+        .card:hover { transform: translateY(-8px); border-color: #38bdf8; }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .info { padding: 20px; }
+        .btn { display: inline-block; margin-top: 15px; padding: 10px 20px; background: #38bdf8; color: #0b0f19; text-decoration: none; border-radius: 6px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Portfolio</h1>
+            <p class="subtitle">Design & Web Solutions</p>
+        </header>
+
+        <h2>Event Posters</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="poster.jpg" alt="Poster Design">
+                <div class="info">
+                    <h3>Event Poster</h3>
+                    <p>Modern design for music events.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Business Websites</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="info">
+                    <h3>Corporate Landing Page</h3>
+                    <p>Responsive and fast business website.</p>
+                    <a href="#" class="btn">View Live Site</a>
+                </div>
+            </div>
+        </div>
+
+        <h2>Logo Design</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="logo.png" alt="Logo Design">
+                <div class="info">
+                    <h3>Brand Identity</h3>
+                    <p>Minimalist and professional logo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
