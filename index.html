@@ -12,23 +12,21 @@
             padding: 0;
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-            /* ТЕКСТ ТЕПЕРЬ БЕЛЫЙ */
-            color: #ffffff;
+            color: #ffffff; /* Весь текст белый */
         }
 
-        /* "Вкусный" фон с небольшим затемнением для читаемости */
+        /* ТОТ САМЫЙ ФОН */
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
-            background-color: #1a1a1a;
         }
 
         section {
             min-height: 100vh;
-            padding: 60px 20px;
+            padding: 80px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -36,100 +34,56 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             width: 100%;
             text-align: center;
         }
 
-        /* --- БЛОК 1: ОБО МНЕ (БЕЛЫЙ ТЕКСТ, ВЫШЕ И АККУРАТНЕЕ) --- */
-        .hero { justify-content: flex-start; padding-top: 12vh; }
-        .hero h1 { 
-            font-size: 3.5rem; 
-            margin: 0; 
-            font-weight: 700; 
-            letter-spacing: -1.5px;
-            text-transform: uppercase;
-            color: #ffffff; /* Заголовок белый */
-        }
-        .hero .subtitle { 
-            font-size: 1.3rem; 
-            color: #3ae374; /* Акцентный зеленый для контраста */
-            margin: 15px 0 25px; 
-            font-weight: 600;
-            letter-spacing: 3px;
-        }
-        .hero .description { 
-            font-size: 1.2rem; 
-            max-width: 650px; 
-            line-height: 1.8; 
-            margin: 0 auto 35px; 
-            color: #e0e0e0; /* Описание светло-серое */
-        }
-        .tech-stack {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .tech-item {
-            font-size: 0.85rem;
-            font-weight: 700;
-            padding: 6px 15px;
-            border: 2px solid #ffffff; /* Рамка белая */
-            border-radius: 4px;
-            color: #ffffff; /* Текст внутри белый */
-            text-transform: uppercase;
-        }
+        /* ВЕРХНИЙ БЛОК - ПОДНЯТ ВЫШЕ */
+        .hero { justify-content: flex-start; padding-top: 8vh; }
+        .hero h1 { font-size: 3.5rem; margin: 0; text-transform: uppercase; }
+        .hero .subtitle { font-size: 1.2rem; color: #3ae374; margin: 10px 0 20px; letter-spacing: 3px; font-weight: 600; }
+        .hero .description { font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px; line-height: 1.7; color: #e0e0e0; }
+        
+        .tech-stack { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .tech-item { font-size: 0.8rem; padding: 5px 12px; border: 1px solid #ffffff; border-radius: 3px; }
 
-        /* --- ГАЛЕРЕЯ И СЕРВИСЫ (ПОЛНАЯ ПРОЗРАЧНОСТЬ, БЕЛЫЙ ТЕКСТ) --- */
-        h2.section-title { 
-            font-size: 2.6rem; 
-            margin-bottom: 50px; 
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #ffffff;
-        }
-
+        /* ГАЛЕРЕЯ ЛОГОТИПОВ - ПОЛНОСТЬЮ ПРОЗРАЧНАЯ */
+        h2.section-title { font-size: 2.5rem; margin-bottom: 50px; text-transform: uppercase; }
+        
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
         }
 
         .card {
-            background: transparent; /* ПОЛНОСТЬЮ ПРОЗРАЧНО */
-            text-align: left;
-            transition: transform 0.4s ease;
+            background: transparent; /* Никакого фона у карточек */
+            text-align: center;
+            transition: 0.3s;
         }
 
         .card:hover { transform: translateY(-10px); }
 
+        /* НАСТРОЙКА ОТОБРАЖЕНИЯ ЛОГОТИПОВ */
         .card img { 
-            width: 100%; 
-            height: auto;
-            border-radius: 4px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: 0.3s;
-        }
-
-        .card h3 { font-size: 1.5rem; margin-bottom: 12px; font-weight: 700; color: #ffffff; }
-        .card p { font-size: 1.05rem; color: #d0d0d0; line-height: 1.6; }
-
-        /* Иконки сервисов */
-        .icon-box {
-            font-size: 2.8rem;
+            width: auto; 
+            max-width: 200px; 
+            height: 200px; 
+            object-fit: contain; /* Чтобы логотип не растягивался */
             margin-bottom: 20px;
             display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        footer { 
-            padding: 60px 20px; 
-            text-align: center; 
-            font-size: 0.9rem; 
-            letter-spacing: 1px;
-            color: #aaaaaa;
-        }
+        .card h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .card p { font-size: 0.95rem; color: #cccccc; line-height: 1.5; }
+
+        /* ИКОНКИ ДЛЯ ВЕБ-РАЗРАБОТКИ */
+        .service-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+
+        footer { padding: 50px; color: #777; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -139,58 +93,68 @@
             <h1>Nikita</h1>
             <div class="subtitle">DEVELOPER & BRAND DESIGNER</div>
             <p class="description">
-                Experienced programmer with <strong>3 years</strong> in the industry. I build high-performance web products and unique visual identities. My code is clean, and my designs are strategic.
+                3 years of professional experience in IT. I build complex logic systems and create unique visual brand identities from scratch.
             </p>
             <div class="tech-stack">
                 <span class="tech-item">HTML5 / CSS3</span>
                 <span class="tech-item">JAVASCRIPT</span>
                 <span class="tech-item">UI/UX STRATEGY</span>
-                <span class="tech-item">LOGIC SYSTEMS</span>
+                <span class="tech-item">REACT / NODE</span>
             </div>
         </div>
     </section>
 
     <section id="logos">
         <div class="container">
-            <h2 class="section-title">Identity Gallery</h2>
+            <h2 class="section-title">Logo Identity</h2>
             <div class="grid">
+                
                 <div class="card">
-                    <img src="logo1.jpg" alt="Logo Design 1">
-                    <h3>Strategic Branding</h3>
-                    <p>I don't just draw; I build visual systems that help businesses scale and stay memorable.</p>
+                    <img src="1.png" alt="Logo 1">
+                    <h3>Project Name 1</h3>
+                    <p>Minimalist branding concept. Clean geometry and professional look.</p>
                 </div>
+
                 <div class="card">
-                    <img src="logo2.jpg" alt="Logo Design 2">
-                    <h3>Visual Essence</h3>
-                    <p>Creating clean, minimalist concepts that work across all digital and physical platforms.</p>
+                    <img src="2.png" alt="Logo 2">
+                    <h3>Project Name 2</h3>
+                    <p>Modern visual identity designed for high-impact presence.</p>
                 </div>
+
                 <div class="card">
-                    <img src="logo3.jpg" alt="Logo Design 3">
-                    <h3>Modern Concepts</h3>
-                    <p>Deep research into market trends to provide designs that stay relevant for years.</p>
+                    <img src="3.png" alt="Logo 3">
+                    <h3>Project Name 3</h3>
+                    <p>Unique artistic approach to professional business symbols.</p>
                 </div>
+
+                <div class="card">
+                    <img src="4.png" alt="Logo 4">
+                    <h3>Project Name 4</h3>
+                    <p>Corporate style developed for scalability and recognition.</p>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="services">
+    <section id="web">
         <div class="container">
-            <h2 class="section-title">Digital Services</h2>
+            <h2 class="section-title">Web Services</h2>
             <div class="grid">
                 <div class="card">
-                    <span class="icon-box">⚙️</span>
-                    <h3>Office Automation</h3>
-                    <p>Development of custom tools like price calculators and data forms to streamline your business operations.</p>
+                    <span class="service-icon">📊</span>
+                    <h3>Office Applications</h3>
+                    <p>Custom tools for business: price calculators, automation forms, and internal management systems.</p>
                 </div>
                 <div class="card">
-                    <span class="icon-box">🤳</span>
-                    <h3>Blogger Solutions</h3>
-                    <p>Personalized landing pages for influencers with full social media integration and premium design.</p>
+                    <span class="service-icon">🤳</span>
+                    <h3>Blogger Landing Pages</h3>
+                    <p>Premium single-page sites for influencers with deep social media integration and personal branding.</p>
                 </div>
                 <div class="card">
-                    <span class="icon-box">💻</span>
-                    <h3>Personalized Code</h3>
-                    <p>From-scratch website development. Unique layouts designed specifically for your personal or corporate brand.</p>
+                    <span class="service-icon">💻</span>
+                    <h3>Personalized Design</h3>
+                    <p>Unique layouts and handcrafted code. No templates, only custom-made web solutions.</p>
                 </div>
             </div>
         </div>
