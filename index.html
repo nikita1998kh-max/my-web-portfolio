@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikita | Portfolio</title>
+    <title>Nikita Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
@@ -13,11 +13,12 @@
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             color: #ffffff;
+            background-color: #000;
         }
 
-        /* Тот самый фон с затемнением */
+        /* ТВОЙ ФОН */
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                         url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed;
             background-size: cover;
@@ -26,11 +27,12 @@
 
         section {
             min-height: 100vh;
-            padding: 60px 20px;
+            padding: 100px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
         .container {
@@ -39,135 +41,172 @@
             text-align: center;
         }
 
-        /* ПРИВЕТСТВИЕ (Поднято выше) */
-        .hero { justify-content: flex-start; padding-top: 10vh; }
-        .hero h1 { font-size: 3.5rem; margin: 0; text-transform: uppercase; }
-        .hero .subtitle { font-size: 1.2rem; color: #3ae374; margin: 15px 0; letter-spacing: 3px; font-weight: 600; }
-        .hero .description { font-size: 1.15rem; max-width: 700px; margin: 0 auto 30px; line-height: 1.8; color: #e0e0e0; }
-        
-        .tech-stack { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .tech-item { font-size: 0.8rem; padding: 6px 15px; border: 1.5px solid #ffffff; border-radius: 4px; text-transform: uppercase; font-weight: 700; }
+        /* ГЛАВНЫЙ ЭКРАН */
+        .hero h1 { font-size: 4rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .hero .subtitle { font-size: 1.2rem; color: #3ae374; margin: 15px 0; font-weight: 700; letter-spacing: 4px; }
+        .hero .description { font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; color: #ccc; line-height: 1.6; }
 
-        /* ГАЛЕРЕЯ (Полная прозрачность) */
-        h2.section-title { font-size: 2.5rem; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px; }
+        /* КРАСИВАЯ СТРЕЛКА */
+        .scroll-arrow {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: #3ae374;
+            text-decoration: none;
+            transition: 0.3s;
+            animation: bounce 2s infinite;
+        }
+        .scroll-arrow:hover { color: #ffffff; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translate(-50%, 0);}
+            40% {transform: translate(-50%, -10px);}
+            60% {transform: translate(-50%, -5px);}
+        }
+
+        /* ЛОГОТИПЫ (БЕЗ ФОНА) */
+        h2.section-title { font-size: 2.8rem; margin-bottom: 60px; text-transform: uppercase; }
         
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
         }
 
         .card {
-            background: transparent;
+            background: transparent !important; /* УБРАЛ БЕЛЫЙ ФОН ВООБЩЕ */
+            border: none;
+            padding: 0;
             text-align: center;
-            transition: 0.4s;
         }
 
-        .card:hover { transform: translateY(-10px); }
-
-        /* Настройка логотипов по твоим файлам */
         .card img { 
             width: auto; 
-            max-width: 220px; 
-            height: 220px; 
+            max-width: 100%; 
+            height: 150px; 
             object-fit: contain; 
-            margin-bottom: 25px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
 
-        .card h3 { font-size: 1.4rem; margin-bottom: 12px; font-weight: 700; }
-        .card p { font-size: 1rem; color: #cccccc; line-height: 1.6; }
+        .card h3 { font-size: 1.3rem; margin: 10px 0; }
+        .card p { font-size: 0.9rem; color: #bbb; }
 
-        /* СЕРВИСЫ */
-        .service-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+        /* НОВЫЕ ОКНА ДЛЯ САЙТОВ */
+        .site-windows {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
 
-        footer { padding: 60px; color: #777; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .site-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.4s ease;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .site-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #3ae374;
+            transform: scale(1.02);
+        }
+
+        .site-label {
+            position: absolute;
+            bottom: 20px;
+            background: #3ae374;
+            color: #000;
+            padding: 5px 15px;
+            font-weight: 700;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        footer { padding: 80px 20px; color: #555; font-size: 0.9rem; text-align: center; }
     </style>
 </head>
 <body>
 
     <section class="hero">
         <div class="container">
-            <h1>Nikita</h1>
-            <div class="subtitle">DEVELOPER & BRAND DESIGNER</div>
+            <h1>Nikita Nick</h1>
+            <div class="subtitle">DEVELOPER & DESIGNER</div>
             <p class="description">
-                3 years of experience in the digital market. I create high-performance websites and unique visual identities. My approach is based on clean code and strategic design thinking.
+                3 года опыта. Создаю функциональные системы для бизнеса и яркий визуал для брендов. Код, который работает. Дизайн, который запоминают.
             </p>
-            <div class="tech-stack">
-                <span class="tech-item">HTML5 / CSS3</span>
-                <span class="tech-item">JAVASCRIPT</span>
-                <span class="tech-item">UI/UX STRATEGY</span>
-                <span class="tech-item">SYSTEM LOGIC</span>
-            </div>
         </div>
+        <a href="#logos" class="scroll-arrow">↓</a>
     </section>
 
     <section id="logos">
         <div class="container">
-            <h2 class="section-title">Identity Gallery</h2>
+            <h2 class="section-title">Identity</h2>
             <div class="grid">
-                
                 <div class="card">
-                    <img src="logo-01.png.png" alt="Logo 01">
+                    <img src="logo-01.png.png" alt="Logo">
                     <h3>Premium Concept</h3>
-                    <p>Strategic visual identity with a focus on minimalism and brand recognition.</p>
+                    <p>Minimalist branding concept.</p>
                 </div>
-
                 <div class="card">
-                    <img src="logo-aero.png.png" alt="Logo Aero">
+                    <img src="logo-aero.png.png" alt="Logo">
                     <h3>Aero Design</h3>
-                    <p>Modern and dynamic approach for high-tech industries and startups.</p>
+                    <p>Modern and dynamic approach.</p>
                 </div>
-
                 <div class="card">
-                    <img src="logo-auto.png.png" alt="Logo Auto">
+                    <img src="logo-auto.png.png" alt="Logo">
                     <h3>Auto Branding</h3>
-                    <p>Strong and reliable visual style designed for the automotive sector.</p>
+                    <p>Strong automotive style.</p>
                 </div>
-
                 <div class="card">
-                    <img src="logo-food.png.png" alt="Logo Food">
+                    <img src="logo-food.png.png" alt="Logo">
                     <h3>Food & Gastro</h3>
-                    <p>Appetizing and friendly design solutions for the food and beverage industry.</p>
+                    <p>Appetizing design solutions.</p>
                 </div>
-
                 <div class="card">
-                    <img src="logo-hablo.png.png" alt="Logo Hablo">
+                    <img src="logo-hablo.png.png" alt="Logo">
                     <h3>Hablo Project</h3>
-                    <p>Unique branding that emphasizes communication and social connection.</p>
+                    <p>Communication & Social.</p>
                 </div>
-
             </div>
         </div>
+        <a href="#web" class="scroll-arrow">↓</a>
     </section>
 
     <section id="web">
         <div class="container">
-            <h2 class="section-title">Web Development</h2>
-            <div class="grid">
-                <div class="card">
-                    <span class="service-icon">📊</span>
-                    <h3>Office Solutions</h3>
-                    <p>Custom tools for business: price calculators, smart forms, and internal automation systems.</p>
+            <h2 class="section-title">Web Projects</h2>
+            
+            <div class="site-windows">
+                <div class="site-card">
+                    <span>Здесь будет сайт для Офиса</span>
+                    <div class="site-label">OFFICE SYSTEM</div>
                 </div>
-                <div class="card">
-                    <span class="service-icon">🤳</span>
-                    <h3>Influencer Pages</h3>
-                    <p>Exclusive landing pages for bloggers with deep social media integration and personal bio links.</p>
+
+                <div class="site-card">
+                    <span>Здесь будет сайт Блогера</span>
+                    <div class="site-label">BLOGGER LANDING</div>
                 </div>
-                <div class="card">
-                    <span class="service-icon">💻</span>
-                    <h3>Personalized Code</h3>
-                    <p>Handcrafted websites from scratch. Unique layouts designed specifically for your personal brand.</p>
+
+                <div class="site-card">
+                    <span>Новый проект в разработке</span>
+                    <div class="site-label">CUSTOM WEB</div>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 NIKITA. ALL RIGHTS RESERVED.</p>
+        <p>&copy; 2026 NIKITA NICK. ALL RIGHTS RESERVED.</p>
     </footer>
 
 </body>
