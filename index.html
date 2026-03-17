@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Web Developer & Designer</title>
+    <title>Nikita | Full-Stack Web Developer Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Общие стили */
+        /* Основные настройки */
         body, html {
             margin: 0;
             padding: 0;
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-            color: #333;
+            color: #2d3436;
         }
 
-        /* Светлый фон с IT-тематикой */
+        /* Светлый фон с IT элементами */
         body {
-            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
-                        url('https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), 
+                        url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed;
             background-size: cover;
+            background-position: center;
         }
 
         section {
             min-height: 100vh;
-            padding: 80px 20px;
+            padding: 60px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -33,85 +34,125 @@
             text-align: center;
         }
 
-        /* Первая страница: Обо мне */
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; color: #000; }
-        .hero p { font-size: 1.2rem; max-width: 600px; line-height: 1.6; }
-        .skills { margin-top: 20px; font-weight: 600; color: #007BFF; }
-
-        /* Галерея */
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             width: 100%;
         }
 
+        /* Первая страница - Приветствие */
+        .hero h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 0; 
+            color: #000;
+            letter-spacing: -1px;
+        }
+        .hero h2 {
+            font-size: 1.5rem;
+            color: #007BFF;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+        .hero p { 
+            font-size: 1.2rem; 
+            max-width: 700px; 
+            line-height: 1.7; 
+            margin: 20px auto;
+            color: #636e72;
+        }
+        .skills-tag {
+            display: inline-block;
+            background: #f1f2f6;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2f3542;
+        }
+
+        /* Сетка для работ */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            gap: 25px;
+            margin-top: 50px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            padding: 20px;
-            transition: transform 0.3s ease;
-            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-align: left;
         }
 
-        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .card img { width: 60px; height: 60px; margin-bottom: 15px; }
-        .card h3 { margin: 10px 0; }
-        .card p { font-size: 0.95rem; color: #666; }
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
 
-        h2 { font-size: 2.5rem; margin-bottom: 40px; border-bottom: 2px solid #007BFF; padding-bottom: 10px; }
+        .card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #636e72;
+            line-height: 1.5;
+        }
+
+        h2.section-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: #007BFF;
+            margin: 15px auto;
+        }
+
+        /* Подвал */
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #95a5a6;
+        }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <h1>Hi, I'm a Professional Developer</h1>
-        <p>I have over <strong>3 years of experience</strong> in the market. I specialize in building high-quality digital products and solving complex programming tasks.</p>
-        <div class="skills">HTML5 • CSS3 • JavaScript • Responsive Design</div>
-        <p style="margin-top: 50px; font-size: 0.9rem; color: #888;">Scroll down to see my work ↓</p>
-    </section>
-
-    <section id="logos">
         <div class="container">
-            <h2>Logo Design & Branding</h2>
-            <div class="grid">
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1162/1162280.png" alt="Logo icon">
-                    <h3>Corporate Identity</h3>
-                    <p>I create unique visual identities for businesses that stand out and leave a lasting impression.</p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1336/1336494.png" alt="Branding icon">
-                    <h3>Creative Graphics</h3>
-                    <p>Modern and minimalist logo concepts tailored to your specific industry and target audience.</p>
-                </div>
+            <h1>Hi, I'm Nikita</h1>
+            <h2>Professional Web Developer & Designer</h2>
+            <p>
+                With <strong>3 years of experience</strong> in the digital market, I craft high-performance websites and unique visual identities. 
+                My goal is to help your business stand out with clean code and modern design.
+            </p>
+            <div>
+                <span class="skills-tag">HTML5</span>
+                <span class="skills-tag">CSS3</span>
+                <span class="skills-tag">JavaScript</span>
+                <span class="skills-tag">UI/UX Design</span>
             </div>
+            <p style="margin-top: 60px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;">Scroll to explore</p>
         </div>
     </section>
 
-    <section id="websites">
-        <div class="container">
-            <h2>Web Development</h2>
-            <div class="grid">
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2210/2210153.png" alt="Office site">
-                    <h3>Business Websites</h3>
-                    <p>Professional websites for offices and corporations. Fully functional, secure, and fast.</p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077046.png" alt="Blogger site">
-                    <h3>Landing Pages for Bloggers</h3>
-                    <p>One-page websites (Link-in-bio style) for influencers. Includes photo galleries, social links, and bio information.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-</body>
-</html>
+    
