@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
 
         /* ТВОЙ ФОН */
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
                         url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed;
             background-size: cover;
@@ -27,7 +27,7 @@
 
         section {
             min-height: 100vh;
-            padding: 80px 20px;
+            padding: 60px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -41,24 +41,21 @@
             text-align: center;
         }
 
-        /* ГЛАВНАЯ СТРАНИЦА (HERO) */
-        .hero h1 { font-size: 5rem; margin: 0; text-transform: uppercase; font-weight: 900; }
-        .hero .subtitle { font-size: 1.2rem; color: #3ae374; margin: 10px 0; letter-spacing: 5px; font-weight: 700; }
-        .hero .description { font-size: 1.15rem; max-width: 750px; margin: 20px auto 30px; line-height: 1.8; color: #e0e0e0; }
+        /* ГЛАВНАЯ СТРАНИЦА - ТОЛЬКО NIKITA */
+        .hero h1 { font-size: 6rem; margin: 0; text-transform: uppercase; font-weight: 900; letter-spacing: -3px; }
+        .hero .subtitle { font-size: 1.2rem; color: #3ae374; margin: 10px 0; letter-spacing: 6px; font-weight: 700; }
+        .hero .description { font-size: 1.2rem; max-width: 700px; margin: 25px auto; line-height: 1.7; color: #ddd; }
         
-        /* СТЕК ЯЗЫКОВ */
-        .tech-stack { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+        .tech-stack { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
         .tech-item { 
-            font-size: 0.85rem; 
-            padding: 8px 18px; 
+            font-size: 0.9rem; 
+            padding: 10px 20px; 
             border: 2px solid #ffffff; 
-            border-radius: 5px; 
             text-transform: uppercase; 
             font-weight: 900;
-            letter-spacing: 1px;
         }
 
-        /* ПРЫГАЮЩАЯ СТРЕЛКА */
+        /* КРАСИВАЯ СТРЕЛКА */
         .scroll-arrow {
             position: absolute;
             bottom: 30px;
@@ -68,7 +65,6 @@
             color: #3ae374;
             text-decoration: none;
             animation: bounce 2s infinite;
-            cursor: pointer;
         }
 
         @keyframes bounce {
@@ -76,18 +72,20 @@
             40% {transform: translate(-50%, -15px);}
         }
 
-        /* СЕКЦИЯ ЛОГОТИПОВ (БЕЗ ФОНА) */
-        h2.section-title { font-size: 3.5rem; margin-bottom: 60px; text-transform: uppercase; font-weight: 900; }
+        /* СЕКЦИЯ ЛОГОТИПОВ - ЧИСТЫЕ КАРТИНКИ */
+        h2.section-title { font-size: 3.5rem; margin-bottom: 70px; text-transform: uppercase; font-weight: 900; }
         
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 45px;
+            gap: 50px;
         }
 
         .card {
             background: transparent !important;
-            border: none;
+            border: none !important;
+            box-shadow: none !important; /* Убрал все тени */
+            padding: 0;
         }
 
         .card img { 
@@ -96,13 +94,18 @@
             height: 180px; 
             object-fit: contain;
             margin-bottom: 20px;
-            mix-blend-mode: screen; /* Убирает белый фон у картинок */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            /* ЖЕСТКОЕ УДАЛЕНИЕ БЕЛОГО ФОНА */
+            mix-blend-mode: screen; 
+            filter: contrast(1.1);
         }
 
-        .card h3 { font-size: 1.3rem; margin: 0 0 10px; color: #fff; text-transform: uppercase; }
+        .card h3 { font-size: 1.4rem; margin: 10px 0; text-transform: uppercase; }
         .card p { font-size: 0.9rem; color: #888; }
 
-        /* ОКНА ВЕБ-ПРОЕКТОВ */
+        /* ОКНА ПРОЕКТОВ */
         .web-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -111,52 +114,44 @@
         }
 
         .web-window {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            height: 380px;
+            border-radius: 10px;
+            height: 350px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            transition: 0.4s;
-        }
-
-        .web-window:hover {
-            border-color: #3ae374;
-            background: rgba(58, 227, 116, 0.08);
-            transform: translateY(-5px);
         }
 
         .web-window .tag {
             position: absolute;
-            bottom: 25px;
+            bottom: 20px;
             background: #3ae374;
             color: #000;
-            padding: 7px 20px;
+            padding: 6px 15px;
             font-weight: 900;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
         }
 
-        footer { padding: 100px 0 50px; color: #444; font-size: 0.85rem; text-align: center; text-transform: uppercase; }
+        footer { padding: 80px 0; color: #333; font-size: 0.8rem; text-align: center; }
     </style>
 </head>
 <body>
 
     <section class="hero">
         <div class="container">
-            <h1>NIKITA NICK</h1>
+            <h1>NIKITA</h1>
             <div class="subtitle">DEVELOPER & DESIGNER</div>
             <p class="description">
-                3 years of professional experience in development and branding. I build complex logic systems for offices and high-impact visual identities for bloggers and businesses.
+                3 years of experience. I build functional web systems and high-impact visual identities. Handcrafted code, strategic design.
             </p>
             <div class="tech-stack">
                 <span class="tech-item">HTML / CSS</span>
                 <span class="tech-item">JAVASCRIPT</span>
                 <span class="tech-item">REACT</span>
                 <span class="tech-item">NODE.JS</span>
-                <span class="tech-item">UI/UX DESIGN</span>
             </div>
         </div>
         <a href="#logos" class="scroll-arrow">↓</a>
@@ -169,27 +164,27 @@
                 <div class="card">
                     <img src="logo-01.png.png" alt="L1">
                     <h3>Premium</h3>
-                    <p>Strategic identity concept.</p>
+                    <p>Corporate style concept.</p>
                 </div>
                 <div class="card">
                     <img src="logo-aero.png.png" alt="L2">
                     <h3>Aero</h3>
-                    <p>Tech-focused dynamic visual.</p>
+                    <p>Tech-focused design.</p>
                 </div>
                 <div class="card">
                     <img src="logo-auto.png.png" alt="L3">
                     <h3>Auto</h3>
-                    <p>Professional automotive brand.</p>
+                    <p>Automotive identity.</p>
                 </div>
                 <div class="card">
                     <img src="logo-food.png.png" alt="L4">
                     <h3>Food</h3>
-                    <p>Modern gastro solutions.</p>
+                    <p>Gastro brand identity.</p>
                 </div>
                 <div class="card">
                     <img src="logo-hablo.png.png" alt="L5">
                     <h3>Hablo</h3>
-                    <p>Social & Web ecosystem.</p>
+                    <p>Social platform style.</p>
                 </div>
             </div>
         </div>
@@ -201,23 +196,23 @@
             <h2 class="section-title">Web Projects</h2>
             <div class="web-grid">
                 <div class="web-window">
-                    <span style="color: #444; text-transform: uppercase; letter-spacing: 2px;">In Development</span>
+                    <span style="color: #444;">COMMING SOON</span>
                     <div class="tag">Office Automation</div>
                 </div>
                 <div class="web-window">
-                    <span style="color: #444; text-transform: uppercase; letter-spacing: 2px;">In Development</span>
+                    <span style="color: #444;">COMMING SOON</span>
                     <div class="tag">Blogger Landing</div>
                 </div>
                 <div class="web-window">
-                    <span style="color: #444; text-transform: uppercase; letter-spacing: 2px;">In Development</span>
-                    <div class="tag">Custom Business App</div>
+                    <span style="color: #444;">COMMING SOON</span>
+                    <div class="tag">Custom Systems</div>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 NIKITA NICK. ALL RIGHTS RESERVED.</p>
+        <p>&copy; 2026 NIKITA. ALL RIGHTS RESERVED.</p>
     </footer>
 
 </body>
