@@ -4,147 +4,201 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nikita | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
-        
         body, html {
             margin: 0;
             padding: 0;
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-            /* Цвет текста делаем чуть темнее для контраста на прозрачном фоне */
-            color: #1d2124; 
+            /* ТЕКСТ ТЕПЕРЬ БЕЛЫЙ */
+            color: #ffffff;
         }
 
-        /* --- ВОТ ЗДЕСЬ ИСПРАВЛЕНО: ПРОЗРАЧНЫЙ ФОН --- */
+        /* "Вкусный" фон с небольшим затемнением для читаемости */
         body {
-            /* Мы убрали плотный белый градиент. Теперь картинка видна четко. */
-            background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80');
-            background-attachment: fixed; /* Фон не движется при скролле */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
             background-size: cover;
             background-position: center;
-            background-color: #fff; /* Резервный цвет, если картинка не загрузится */
+            background-color: #1a1a1a;
         }
 
-        /* Общие стили для секций */
         section {
             min-height: 100vh;
-            padding: 100px 20px;
+            padding: 60px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
         }
 
         .container {
             max-width: 1100px;
             width: 100%;
+            text-align: center;
         }
 
-        /* Секция 1: Приветствие */
+        /* --- БЛОК 1: ОБО МНЕ (БЕЛЫЙ ТЕКСТ, ВЫШЕ И АККУРАТНЕЕ) --- */
+        .hero { justify-content: flex-start; padding-top: 12vh; }
         .hero h1 { 
-            font-size: 4rem; 
+            font-size: 3.5rem; 
             margin: 0; 
-            color: #000; 
-            text-shadow: 0 2px 4px rgba(255,255,255,0.5); /* Легкая тень для читаемости */
+            font-weight: 700; 
+            letter-spacing: -1.5px;
+            text-transform: uppercase;
+            color: #ffffff; /* Заголовок белый */
         }
-        .hero h2 { 
-            font-size: 1.6rem; 
-            color: #007BFF; 
-            margin-top: 10px; 
-            font-weight: 400; 
-            text-shadow: 0 1px 2px rgba(255,255,255,0.3);
+        .hero .subtitle { 
+            font-size: 1.3rem; 
+            color: #3ae374; /* Акцентный зеленый для контраста */
+            margin: 15px 0 25px; 
+            font-weight: 600;
+            letter-spacing: 3px;
         }
-        .hero p { 
-            font-size: 1.25rem; 
-            max-width: 700px; 
+        .hero .description { 
+            font-size: 1.2rem; 
+            max-width: 650px; 
             line-height: 1.8; 
-            margin: 30px auto; 
-            color: #2d3436; 
-            font-weight: 400;
+            margin: 0 auto 35px; 
+            color: #e0e0e0; /* Описание светло-серое */
+        }
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .tech-item {
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 6px 15px;
+            border: 2px solid #ffffff; /* Рамка белая */
+            border-radius: 4px;
+            color: #ffffff; /* Текст внутри белый */
+            text-transform: uppercase;
         }
 
-        /* --- ПРОЗРАЧНАЯ СЕТКА КАРТОЧЕК --- */
+        /* --- ГАЛЕРЕЯ И СЕРВИСЫ (ПОЛНАЯ ПРОЗРАЧНОСТЬ, БЕЛЫЙ ТЕКСТ) --- */
+        h2.section-title { 
+            font-size: 2.6rem; 
+            margin-bottom: 50px; 
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 50px;
-            margin-top: 60px;
         }
 
         .card {
-            background: transparent; /* Полная прозрачность карточек */
-            border: none;
-            text-align: center;
-            transition: transform 0.3s ease;
-            padding: 20px;
+            background: transparent; /* ПОЛНОСТЬЮ ПРОЗРАЧНО */
+            text-align: left;
+            transition: transform 0.4s ease;
         }
 
-        .card:hover { 
-            transform: translateY(-10px); 
-        }
-        
-        /* Стили для твоих логотипов */
+        .card:hover { transform: translateY(-10px); }
+
         .card img { 
             width: 100%; 
-            max-width: 220px; 
-            height: auto; 
-            margin-bottom: 25px; 
-            border-radius: 12px;
-            /* Добавляем легкую тень самим картинкам для объема */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: 0.3s;
         }
 
-        .card h3 { 
-            font-size: 1.5rem; 
-            margin: 0 0 15px 0; 
-            color: #000; 
-        }
-        .card p { 
-            font-size: 1.05rem; 
-            color: #2d3436; 
-            line-height: 1.6;
-            margin: 0;
+        .card h3 { font-size: 1.5rem; margin-bottom: 12px; font-weight: 700; color: #ffffff; }
+        .card p { font-size: 1.05rem; color: #d0d0d0; line-height: 1.6; }
+
+        /* Иконки сервисов */
+        .icon-box {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            display: block;
         }
 
-        /* Заголовки секций */
-        h2.section-title { 
-            font-size: 3rem; 
-            margin-bottom: 60px; 
-            color: #000;
-        }
-        h2.section-title::after {
-            content: ''; 
-            display: block; 
-            width: 70px; 
-            height: 5px; 
-            background: #007BFF; 
-            margin: 25px auto; 
-            border-radius: 2px;
-        }
-
-        /* Подвал */
         footer { 
-            padding: 80px 20px; 
-            color: #636e72; 
-            font-size: 1rem; 
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1); /* Совсем легкий фон в самом низу */
-        }
-        
-        /* Адаптивность для мобильных */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            h2.section-title { font-size: 2.2rem; }
-            .card img { max-width: 180px; }
+            padding: 60px 20px; 
+            text-align: center; 
+            font-size: 0.9rem; 
+            letter-spacing: 1px;
+            color: #aaaaaa;
         }
     </style>
 </head>
 <body>
 
-    <section id="about" class="hero">
+    <section class="hero">
         <div class="container">
-            <h1>Hi, I'm Nikita</h1>
-            <h2>Web Developer &
+            <h1>Nikita</h1>
+            <div class="subtitle">DEVELOPER & BRAND DESIGNER</div>
+            <p class="description">
+                Experienced programmer with <strong>3 years</strong> in the industry. I build high-performance web products and unique visual identities. My code is clean, and my designs are strategic.
+            </p>
+            <div class="tech-stack">
+                <span class="tech-item">HTML5 / CSS3</span>
+                <span class="tech-item">JAVASCRIPT</span>
+                <span class="tech-item">UI/UX STRATEGY</span>
+                <span class="tech-item">LOGIC SYSTEMS</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="logos">
+        <div class="container">
+            <h2 class="section-title">Identity Gallery</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="logo1.jpg" alt="Logo Design 1">
+                    <h3>Strategic Branding</h3>
+                    <p>I don't just draw; I build visual systems that help businesses scale and stay memorable.</p>
+                </div>
+                <div class="card">
+                    <img src="logo2.jpg" alt="Logo Design 2">
+                    <h3>Visual Essence</h3>
+                    <p>Creating clean, minimalist concepts that work across all digital and physical platforms.</p>
+                </div>
+                <div class="card">
+                    <img src="logo3.jpg" alt="Logo Design 3">
+                    <h3>Modern Concepts</h3>
+                    <p>Deep research into market trends to provide designs that stay relevant for years.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Digital Services</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="icon-box">⚙️</span>
+                    <h3>Office Automation</h3>
+                    <p>Development of custom tools like price calculators and data forms to streamline your business operations.</p>
+                </div>
+                <div class="card">
+                    <span class="icon-box">🤳</span>
+                    <h3>Blogger Solutions</h3>
+                    <p>Personalized landing pages for influencers with full social media integration and premium design.</p>
+                </div>
+                <div class="card">
+                    <span class="icon-box">💻</span>
+                    <h3>Personalized Code</h3>
+                    <p>From-scratch website development. Unique layouts designed specifically for your personal or corporate brand.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 NIKITA. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>
