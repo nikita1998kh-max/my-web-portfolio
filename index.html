@@ -2,38 +2,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Web Developer & Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { 
-            margin: 0; 
-            padding: 0; 
-            height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            font-family: sans-serif;
-            background: linear-gradient(135deg, #064e3b, #10b981); /* Зеленый градиент */
-            color: white;
+        /* Общие стили */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            color: #333;
         }
-        .nav-links { display: flex; gap: 20px; margin-top: 30px; }
-        .nav-links a { 
-            padding: 15px 30px; 
-            background: rgba(255, 255, 255, 0.2); 
-            color: white; 
-            text-decoration: none; 
-            border-radius: 8px;
-            transition: 0.3s;
+
+        /* Светлый фон с IT-тематикой */
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
+            background-size: cover;
         }
-        .nav-links a:hover { background: rgba(255, 255, 255, 0.4); }
+
+        section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Первая страница: Обо мне */
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; color: #000; }
+        .hero p { font-size: 1.2rem; max-width: 600px; line-height: 1.6; }
+        .skills { margin-top: 20px; font-weight: 600; color: #007BFF; }
+
+        /* Галерея */
+        .container {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card img { width: 60px; height: 60px; margin-bottom: 15px; }
+        .card h3 { margin: 10px 0; }
+        .card p { font-size: 0.95rem; color: #666; }
+
+        h2 { font-size: 2.5rem; margin-bottom: 40px; border-bottom: 2px solid #007BFF; padding-bottom: 10px; }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Portfolio</h1>
-    <div class="nav-links">
-        <a href="logos.html">My Logos</a>
-        <a href="sites.html">My Sites</a>
-        <a href="posters.html">My Posters</a>
-    </div>
+
+    <section class="hero">
+        <h1>Hi, I'm a Professional Developer</h1>
+        <p>I have over <strong>3 years of experience</strong> in the market. I specialize in building high-quality digital products and solving complex programming tasks.</p>
+        <div class="skills">HTML5 • CSS3 • JavaScript • Responsive Design</div>
+        <p style="margin-top: 50px; font-size: 0.9rem; color: #888;">Scroll down to see my work ↓</p>
+    </section>
+
+    <section id="logos">
+        <div class="container">
+            <h2>Logo Design & Branding</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1162/1162280.png" alt="Logo icon">
+                    <h3>Corporate Identity</h3>
+                    <p>I create unique visual identities for businesses that stand out and leave a lasting impression.</p>
+                </div>
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1336/1336494.png" alt="Branding icon">
+                    <h3>Creative Graphics</h3>
+                    <p>Modern and minimalist logo concepts tailored to your specific industry and target audience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="websites">
+        <div class="container">
+            <h2>Web Development</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2210/2210153.png" alt="Office site">
+                    <h3>Business Websites</h3>
+                    <p>Professional websites for offices and corporations. Fully functional, secure, and fast.</p>
+                </div>
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077046.png" alt="Blogger site">
+                    <h3>Landing Pages for Bloggers</h3>
+                    <p>One-page websites (Link-in-bio style) for influencers. Includes photo galleries, social links, and bio information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
