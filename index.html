@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nikita Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
         body, html {
@@ -13,12 +13,12 @@
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             color: #ffffff;
-            background-color: #050505;
+            background-color: #000;
         }
 
-        /* ОСНОВНОЙ ФОН */
+        /* ТВОЙ ФОН */
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
                         url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed;
             background-size: cover;
@@ -41,41 +41,53 @@
             text-align: center;
         }
 
-        /* HERO */
-        .hero h1 { font-size: 4.5rem; margin: 0; text-transform: uppercase; }
-        .hero .subtitle { font-size: 1.1rem; color: #3ae374; margin: 15px 0; font-weight: 700; letter-spacing: 5px; }
+        /* ГЛАВНАЯ СТРАНИЦА (HERO) */
+        .hero h1 { font-size: 5rem; margin: 0; text-transform: uppercase; font-weight: 900; }
+        .hero .subtitle { font-size: 1.2rem; color: #3ae374; margin: 10px 0; letter-spacing: 5px; font-weight: 700; }
+        .hero .description { font-size: 1.15rem; max-width: 750px; margin: 20px auto 30px; line-height: 1.8; color: #e0e0e0; }
+        
+        /* СТЕК ЯЗЫКОВ */
+        .tech-stack { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+        .tech-item { 
+            font-size: 0.85rem; 
+            padding: 8px 18px; 
+            border: 2px solid #ffffff; 
+            border-radius: 5px; 
+            text-transform: uppercase; 
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
 
-        /* СТРЕЛКА */
+        /* ПРЫГАЮЩАЯ СТРЕЛКА */
         .scroll-arrow {
             position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 3rem;
+            font-size: 4rem;
             color: #3ae374;
             text-decoration: none;
             animation: bounce 2s infinite;
+            cursor: pointer;
         }
 
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {transform: translate(-50%, 0);}
-            40% {transform: translate(-50%, -10px);}
+            40% {transform: translate(-50%, -15px);}
         }
 
-        /* ЛОГОТИПЫ (УДАЛЕНИЕ ФОНА) */
-        h2.section-title { font-size: 3rem; margin-bottom: 60px; text-transform: uppercase; }
+        /* СЕКЦИЯ ЛОГОТИПОВ (БЕЗ ФОНА) */
+        h2.section-title { font-size: 3.5rem; margin-bottom: 60px; text-transform: uppercase; font-weight: 900; }
         
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 45px;
         }
 
         .card {
-            background: none !important; /* ЖЕСТКО УБРАЛ ФОН КАРТОЧКИ */
-            border: none !important;
-            box-shadow: none !important;
-            padding: 0;
+            background: transparent !important;
+            border: none;
         }
 
         .card img { 
@@ -83,56 +95,69 @@
             max-width: 100%; 
             height: 180px; 
             object-fit: contain;
-            /* Если на логотипе есть белый фон, эта строка ниже сделает его прозрачным */
-            mix-blend-mode: lighten; 
+            margin-bottom: 20px;
+            mix-blend-mode: screen; /* Убирает белый фон у картинок */
         }
 
-        .card h3 { font-size: 1.2rem; margin: 15px 0 5px; color: #ffffff; }
-        .card p { font-size: 0.85rem; color: #888; }
+        .card h3 { font-size: 1.3rem; margin: 0 0 10px; color: #fff; text-transform: uppercase; }
+        .card p { font-size: 0.9rem; color: #888; }
 
-        /* ОКНА ПРОЕКТОВ */
-        .site-windows {
+        /* ОКНА ВЕБ-ПРОЕКТОВ */
+        .web-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
         }
 
-        .site-card {
-            background: rgba(255, 255, 255, 0.03);
+        .web-window {
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            height: 300px;
+            border-radius: 15px;
+            height: 380px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            transition: 0.3s;
+            transition: 0.4s;
         }
 
-        .site-card:hover { border-color: #3ae374; background: rgba(58, 227, 116, 0.05); }
+        .web-window:hover {
+            border-color: #3ae374;
+            background: rgba(58, 227, 116, 0.08);
+            transform: translateY(-5px);
+        }
 
-        .site-label {
+        .web-window .tag {
             position: absolute;
-            bottom: 15px;
-            left: 15px;
+            bottom: 25px;
             background: #3ae374;
             color: #000;
-            padding: 4px 12px;
-            font-size: 0.75rem;
-            font-weight: 800;
+            padding: 7px 20px;
+            font-weight: 900;
+            font-size: 0.85rem;
             text-transform: uppercase;
         }
 
-        footer { padding: 100px 0 40px; color: #444; font-size: 0.8rem; text-align: center; }
+        footer { padding: 100px 0 50px; color: #444; font-size: 0.85rem; text-align: center; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
     <section class="hero">
         <div class="container">
-            <h1>Nikita Nick</h1>
+            <h1>NIKITA NICK</h1>
             <div class="subtitle">DEVELOPER & DESIGNER</div>
+            <p class="description">
+                3 years of professional experience in development and branding. I build complex logic systems for offices and high-impact visual identities for bloggers and businesses.
+            </p>
+            <div class="tech-stack">
+                <span class="tech-item">HTML / CSS</span>
+                <span class="tech-item">JAVASCRIPT</span>
+                <span class="tech-item">REACT</span>
+                <span class="tech-item">NODE.JS</span>
+                <span class="tech-item">UI/UX DESIGN</span>
+            </div>
         </div>
         <a href="#logos" class="scroll-arrow">↓</a>
     </section>
@@ -141,28 +166,59 @@
         <div class="container">
             <h2 class="section-title">My Logos</h2>
             <div class="grid">
-                <div class="card"><img src="logo-01.png.png" alt="L1"><h3>Premium</h3><p>Identity Concept</p></div>
-                <div class="card"><img src="logo-aero.png.png" alt="L2"><h3>Aero</h3><p>Tech Style</p></div>
-                <div class="card"><img src="logo-auto.png.png" alt="L3"><h3>Auto</h3><p>Power & Speed</p></div>
-                <div class="card"><img src="logo-food.png.png" alt="L4"><h3>Food</h3><p>Gastro Brand</p></div>
-                <div class="card"><img src="logo-hablo.png.png" alt="L5"><h3>Hablo</h3><p>Social Web</p></div>
+                <div class="card">
+                    <img src="logo-01.png.png" alt="L1">
+                    <h3>Premium</h3>
+                    <p>Strategic identity concept.</p>
+                </div>
+                <div class="card">
+                    <img src="logo-aero.png.png" alt="L2">
+                    <h3>Aero</h3>
+                    <p>Tech-focused dynamic visual.</p>
+                </div>
+                <div class="card">
+                    <img src="logo-auto.png.png" alt="L3">
+                    <h3>Auto</h3>
+                    <p>Professional automotive brand.</p>
+                </div>
+                <div class="card">
+                    <img src="logo-food.png.png" alt="L4">
+                    <h3>Food</h3>
+                    <p>Modern gastro solutions.</p>
+                </div>
+                <div class="card">
+                    <img src="logo-hablo.png.png" alt="L5">
+                    <h3>Hablo</h3>
+                    <p>Social & Web ecosystem.</p>
+                </div>
             </div>
         </div>
-        <a href="#projects" class="scroll-arrow">↓</a>
+        <a href="#web" class="scroll-arrow">↓</a>
     </section>
 
-    <section id="projects">
+    <section id="web">
         <div class="container">
             <h2 class="section-title">Web Projects</h2>
-            <div class="site-windows">
-                <div class="site-card"><span>Coming Soon</span><div class="site-label">Office automation</div></div>
-                <div class="site-card"><span>Coming Soon</span><div class="site-label">Blogger landing</div></div>
-                <div class="site-card"><span>Coming Soon</span><div class="site-label">Corporate site</div></div>
+            <div class="web-grid">
+                <div class="web-window">
+                    <span style="color: #444; text-transform: uppercase; letter-spacing: 2px;">In Development</span>
+                    <div class="tag">Office Automation</div>
+                </div>
+                <div class="web-window">
+                    <span style="color: #444; text-transform: uppercase; letter-spacing: 2px;">In Development</span>
+                    <div class="tag">Blogger Landing</div>
+                </div>
+                <div class="web-window">
+                    <span style="color: #444; text-transform: uppercase; letter-spacing: 2px;">In Development</span>
+                    <div class="tag">Custom Business App</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer><p>&copy; 2026 NIKITA NICK. ALL RIGHTS RESERVED.</p></footer>
+    <footer>
+        <p>&copy; 2026 NIKITA NICK. ALL RIGHTS RESERVED.</p>
+    </footer>
 
 </body>
 </html>
