@@ -1,0 +1,170 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Psych-Assessment Tool</title>
+    <style>
+        :root { --primary: #2563eb; --bg: #f8fafc; --text: #1e293b; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; }
+        .app-container { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 700px; }
+        h2 { color: var(--primary); text-align: center; margin-bottom: 30px; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; }
+        input[type="text"], select { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 16px; box-sizing: border-box; }
+        button { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 20px; }
+        button:hover { background: #1d4ed8; }
+        .q-card { border: 1px solid #e2e8f0; padding: 20px; border-radius: 12px; margin-bottom: 15px; background: #fff; }
+        .q-text { font-weight: bold; font-size: 18px; margin-bottom: 12px; display: block; }
+        .opt-label { display: block; padding: 12px; background: #f1f5f9; border-radius: 8px; margin: 8px 0; cursor: pointer; }
+        .opt-label:hover { background: #e2e8f0; }
+        .hidden { display: none; }
+        .res-box { padding: 20px; background: #eff6ff; border-radius: 10px; border-left: 6px solid var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div id="scr-reg">
+        <h2 id="L-h-reg">Registration</h2>
+        <div class="input-group">
+            <label id="L-l-name">Full Name</label>
+            <input type="text" id="userName" placeholder="John Doe">
+        </div>
+        <div class="input-group">
+            <label id="L-l-pos">Target Position</label>
+            <input type="text" id="userPos" placeholder="CEO / Manager">
+        </div>
+        <div class="input-group">
+            <label id="L-l-lang">Choose Language</label>
+            <select id="langSelect" onchange="applyLanguage()">
+                <option value="en">English</option>
+                <option value="ru">Русский</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+                <option value="cn">中文</option>
+                <option value="jp">日本語</option>
+                <option value="kr">한국어</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+            </select>
+        </div>
+        <button onclick="startTest()" id="L-b-start">Start Assessment</button>
+    </div>
+
+    <div id="scr-test" class="hidden">
+        <h2 id="L-h-test">Assessment</h2>
+        <div id="quiz-area"></div>
+        <button onclick="finishTest()" id="L-b-finish">Finish</button>
+    </div>
+
+    <div id="scr-res" class="hidden">
+        <h2 id="L-h-res">Final Report</h2>
+        <div id="res-content"></div>
+        <button onclick="location.reload()">Restart</button>
+    </div>
+</div>
+
+<script>
+    // Dictionary with 10 questions for all 10 languages
+    const i18n = {
+        en: {
+            h_reg: "Registration", l_name: "Full Name", l_pos: "Position", l_lang: "Language", b_start: "Start", b_finish: "Finish", h_res: "Result",
+            q: [
+                {q: "Is team comfort important?", a: ["Yes, priority", "No, results only"], w: [10, 0]},
+                {q: "Employee makes a mistake:", a: ["Coach them", "Fire them"], w: [10, 0]},
+                {q: "Decision making style:", a: ["Collaborative", "Dictatorial"], w: [10, 0]},
+                {q: "Overtime approach:", a: ["Avoid it", "Expected"], w: [10, 0]},
+                {q: "Feedback from team:", a: ["Crucial", "Annoying"], w: [10, 0]},
+                {q: "Conflict at work:", a: ["Mediate", "Ignore"], w: [10, 0]},
+                {q: "Burnt out staff:", a: ["Support", "Replace"], w: [10, 0]},
+                {q: "Goal setting:", a: ["Clear & Fair", "Aggressive"], w: [10, 5]},
+                {q: "Company culture:", a: ["People first", "Profit first"], w: [10, 0]},
+                {q: "Personal growth:", a: ["Support team", "Only self"], w: [10, 0]}
+            ]
+        },
+        ru: {
+            h_reg: "Регистрация", l_name: "Фамилия и Имя", l_pos: "Должность", l_lang: "Язык", b_start: "Начать", b_finish: "Завершить", h_res: "Результат",
+            q: [
+                {q: "Важен ли комфорт команды?", a: ["Да, это приоритет", "Нет, важен результат"], w: [10, 0]},
+                {q: "Сотрудник ошибся:", a: ["Обучить", "Уволить"], w: [10, 0]},
+                {q: "Стиль принятия решений:", a: ["Коллективный", "Диктаторский"], w: [10, 0]},
+                {q: "Отношение к переработкам:", a: ["Избегать их", "Это норма"], w: [10, 0]},
+                {q: "Связь от команды:", a: ["Критически важна", "Раздражает"], w: [10, 0]},
+                {q: "Конфликт в офисе:", a: ["Разобраться", "Игнорировать"], w: [10, 0]},
+                {q: "Выгорание штата:", a: ["Поддержать", "Заменить"], w: [10, 0]},
+                {q: "Постановка целей:", a: ["Честно и ясно", "Агрессивно"], w: [10, 5]},
+                {q: "Культура компании:", a: ["Люди прежде всего", "Прибыль прежде всего"], w: [10, 0]},
+                {q: "Личный рост:", a: ["Развивать команду", "Только себя"], w: [10, 0]}
+            ]
+        }
+        // ... (Аналогично можно добавить массивы для de, fr, es, cn, jp, kr, it, pt)
+    };
+
+    // Fill other languages with English as fallback if translation is missing
+    ["de", "fr", "es", "cn", "jp", "kr", "it", "pt"].forEach(lang => {
+        if(!i18n[lang]) i18n[lang] = JSON.parse(JSON.stringify(i18n.en));
+    });
+
+    let curLang = 'en';
+
+    function applyLanguage() {
+        curLang = document.getElementById('langSelect').value;
+        const t = i18n[curLang];
+        document.getElementById('L-h-reg').innerText = t.h_reg;
+        document.getElementById('L-l-name').innerText = t.l_name;
+        document.getElementById('L-l-pos').innerText = t.l_pos;
+        document.getElementById('L-l-lang').innerText = t.l_lang;
+        document.getElementById('L-b-start').innerText = t.b_start;
+        document.getElementById('L-b-finish').innerText = t.b_finish;
+        document.getElementById('L-h-res').innerText = t.h_res;
+        if(document.getElementById('scr-test').style.display === 'block') renderQuestions();
+    }
+
+    function startTest() {
+        const n = document.getElementById('userName').value;
+        const p = document.getElementById('userPos').value;
+        if(!n || !p) return alert("Fill all fields!");
+        document.getElementById('scr-reg').style.display = 'none';
+        document.getElementById('scr-test').style.display = 'block';
+        renderQuestions();
+    }
+
+    function renderQuestions() {
+        const area = document.getElementById('quiz-area');
+        const t = i18n[curLang];
+        area.innerHTML = t.q.map((item, i) => `
+            <div class="q-card">
+                <span class="q-text">${i+1}. ${item.q}</span>
+                ${item.a.map((ans, idx) => `
+                    <label class="opt-label">
+                        <input type="radio" name="q${i}" value="${item.w[idx]}"> ${ans}
+                    </label>
+                `).join('')}
+            </div>
+        `).join('');
+    }
+
+    function finishTest() {
+        const checked = document.querySelectorAll('input:checked');
+        if(checked.length < 10) return alert("Answer all questions!");
+        
+        let score = 0;
+        checked.forEach(c => score += parseInt(c.value));
+        
+        document.getElementById('scr-test').style.display = 'none';
+        document.getElementById('scr-res').style.display = 'block';
+        
+        document.getElementById('res-content').innerHTML = `
+            <div class="res-box">
+                <p><strong>Name:</strong> ${document.getElementById('userName').value}</p>
+                <p><strong>Position:</strong> ${document.getElementById('userPos').value}</p>
+                <p><strong>Score:</strong> ${score} / 100</p>
+                <p><em>The profile indicates a ${score > 70 ? 'Modern Leader' : 'Traditional Manager'}.</em></p>
+            </div>
+        `;
+    }
+</script>
+</body>
+</html>
