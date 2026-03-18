@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Factory Resource Manager</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #1a1a2e; color: #e0e0e0; margin: 0; padding: 20px; }
+        .container { max-width: 1100px; margin: auto; background: #16213e; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h1 { text-align: center; color: #4ecca3; margin-bottom: 30px; }
+        
+        /* Dashboard Styling */
+        .dashboard { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-bottom: 30px; }
+        .dept-card { background: #0f3460; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #16213e; transition: 0.3s; }
+        .dept-card h3 { margin: 5px 0; font-size: 1.1rem; }
+        .dept-card .count { font-size: 2rem; font-weight: bold; margin: 10px 0; }
+        
+        /* Status Colors */
+        .status-ok { border-color: #4ecca3; color: #4ecca3; }
+        .status-warning { border-color: #fca311; color: #fca311; }
+        .status-critical { border-color: #e94560; color: #e94560; animation: pulse 2s infinite; }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(233, 69, 96, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(233, 69, 96, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(233, 69, 96, 0); }
+        }
+
+        .controls { background: #0f3460; padding: 20px; border-radius: 10px; display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; margin-bottom: 20px; }
+        .control-group { display: flex; flex-direction: column; gap: 8px; }
+        
+        select, button { padding: 12px; border-radius: 6px; border: none; font-size: 14px; outline: none; }
+        select { background: #1a1a2e; color: white; width: 300px; }
+        button { background: #e94560; color: white; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #ff2e63; transform: translateY(-2px); }
+
+        .log-container { background: #000; border-radius: 8px; padding: 15px; height: 200px; overflow-y: auto; font-family: 'Courier New', monospace; border: 1px solid #333; }
+        .log-entry { margin-bottom: 5px; border-left: 3px solid #444; padding-left: 10px; font-size: 0.9rem; }
+        .log-alert { border-left-color: #e94560; color: #ff6b6b; }
+        .log-transfer { border-left-color: #4ecca3; color: #4ecca3; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Unit Resource Allocation System</h1>
+
+    <div class="dashboard" id="deptDashboard">
+        </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label>Select Employee to Report Absence:</label>
+            <select id="employeeSelect"></select>
+        </div>
+        <button onclick="reportAbsence()">Send to Sick Leave</button>
+        <button onclick="resetSystem()" style="background: #533483;">Reset All Data</button>
+    </div>
+
+    <h3>System Live Notifications:</h3>
+    <div class="log-container" id="systemLog">
+        <div class="log-entry">System initialized. Monitoring 50 active units across 5 sectors...</div>
+    </div>
+</div>
+
+<script>
+    // Configuration: Min required staff per Department
+    const DEPARTMENTS = {
+        1: { name: "Production (Robotic)", min: 5, priority: 1 },
+        2: { name: "Assembly Line A", min: 7, priority: 2 },
+        3: { name: "Assembly Line B", min: 7, priority: 3 },
+        4: { name: "Assembly Line C", min: 7, priority: 4 },
+        5: { name: "Warehouse & Store", min: 6, priority: 5 }
+    };
+
+    const SPECIALIZATIONS = ["Mechanical Engineer", "Quality Controller", "Logic Operator", "Technician", "Assembler"];
+    let staff = [];
+
+    // Initialize 50 employees
+    function initStaff() {
+        staff = [];
+        for (let i = 1; i <= 50; i++) {
+            let deptId = Math.ceil(i / 10);
+            staff.push({
+                id: i,
+                name: "Specialist " + (1000 + i),
+                baseDept: deptId, // Original department
+                currentDept: deptId, // Current assignment
+                spec: SPECIALIZATIONS[Math.floor(Math.random() * SPECIALIZATIONS.length)],
+                isAvailable: true
+            });
+        }
+    }
+
+    function updateDashboard() {
+        const dashboard = document.getElementById('deptDashboard');
+        dashboard.innerHTML = '';
+
+        for (let id in DEPARTMENTS) {
+            const dept = DEPARTMENTS[id];
+            const activeCount = staff.filter(s => s.currentDept == id && s.isAvailable).length;
+            
+            let statusClass = 'status-ok';
+            if (activeCount < dept.min) statusClass = 'status-critical';
+            else if (activeCount === dept.min) statusClass = 'status-warning';
+
+            dashboard.innerHTML += `
+                <div class="dept-card ${statusClass}">
+                    <h3>${dept.name}</h3>
+                    <div class="count">${activeCount}</div>
+                    <small>Required: ${dept.min}</small>
+                </div>
+            `;
+        }
+
+        const select = document.getElementById('employeeSelect');
+        select.innerHTML = '';
+        staff.filter(s => s.isAvailable).sort((a,b) => a.currentDept - b.currentDept).forEach(s => {
+            select.innerHTML += `<option value="${s.id}">${s.name} | Dept: ${s.currentDept} (${s.spec})</option>`;
+        });
+    }
+
+    function addLog(text, type = 'normal') {
+        const log = document.getElementById('systemLog');
+        const entry = document.createElement('div');
+        entry.className = 'log-entry' + (type === 'alert' ? ' log-alert' : type === 'transfer' ? ' log-transfer' : '');
+        entry.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+        log.prepend(entry);
+    }
+
+    function reportAbsence() {
+        const id = parseInt(document.getElementById('employeeSelect').value);
+        const employee = staff.find(s => s.id === id);
+        if (!employee) return;
+
+        employee.isAvailable = false;
+        addLog(`ALERT: ${employee.name} reported sick leave. Leaving Dept ${employee.currentDept}.`, 'alert');
+        
+        runRebalancing();
+        updateDashboard();
+    }
+
+    function runRebalancing() {
+        // High priority check: Depts 1 to 4
+        for (let targetId = 1; targetId <= 4; targetId++) {
+            let currentCount = staff.filter(s => s.currentDept == targetId && s.isAvailable).length;
+            let minNeeded = DEPARTMENTS[targetId].min;
+
+            // While department is understaffed, pull from Dept 5 (Warehouse)
+            while (currentCount < minNeeded) {
+                const substitute = staff.find(s => s.isAvailable && s.currentDept == 5);
+                
+                if (substitute) {
+                    substitute.currentDept = targetId;
+                    addLog(`REBALANCE: ${substitute.name} (${substitute.spec}) relocated to ${DEPARTMENTS[targetId].name}.`, 'transfer');
+                    currentCount++;
+                } else {
+                    addLog(`CRITICAL: No more substitutes available for ${DEPARTMENTS[targetId].name}!`, 'alert');
+                    break;
+                }
+            }
+        }
+    }
+
+    function resetSystem() {
+        initStaff();
+        updateDashboard();
+        addLog("System reset. All units returned to base departments.");
+    }
+
+    initStaff();
+    updateDashboard();
+</script>
+
+</body>
+</html>
