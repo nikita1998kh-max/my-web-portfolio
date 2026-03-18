@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Corporate Management System</title>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.284.0/dist/umd/lucide.min.js"></script>
+    <style>
+        :root { --p: #6366f1; --s: #10b981; --bg: #0f172a; --card: #1e293b; }
+        * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: white; margin: 0; padding: 20px; display: flex; justify-content: center; min-height: 100vh; }
+        .container { width: 100%; max-width: 600px; background: var(--card); padding: 35px; border-radius: 28px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 25px 50px rgba(0,0,0,0.5); align-self: center; }
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Главные кнопки выбора */
+        .main-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .nav-card { background: #334155; padding: 25px; border-radius: 20px; text-align: center; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
+        .nav-card:hover { border-color: var(--p); background: #475569; transform: translateY(-5px); }
+        .nav-card i { margin-bottom: 10px; display: block; margin: 0 auto 10px; }
+
+        input, select { background: #0f172a; border: 1px solid #475569; color: white; padding: 14px; border-radius: 12px; width: 100%; margin-bottom: 20px; }
+        .opt-btn { background: #334155; border: 2px solid transparent; color: white; width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 14px; cursor: pointer; text-align: left; }
+        .opt-btn.selected { border-color: var(--p); background: rgba(99, 102, 241, 0.2); }
+        
+        .btn-action { background: var(--p); color: white; border: none; padding: 18px; border-radius: 14px; width: 100%; font-weight: bold; cursor: pointer; }
+        
+        /* Аналитика */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .stat-item { background: #0f172a; padding: 15px; border-radius: 12px; text-align: center; font-size: 0.8rem; border: 1px solid #334155; }
+        .stat-val { display: block; font-size: 1.5rem; font-weight: bold; color: var(--s); }
+        
+        .progress-bar { height: 8px; background: #334155; border-radius: 4px; overflow: hidden; margin-top: 10px; }
+        .fill { height: 100%; background: var(--p); width: 0%; transition: 0.5s; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="step0" class="step active">
+        <h1 style="text-align: center;" id="L-main-title">Corporate Portal</h1>
+        <p style="text-align: center; color: #94a3b8;" id="L-main-sub">Select your access level</p>
+        
+        <div class="main-nav">
+            <div class="nav-card" onclick="startSurvey()">
+                <i data-lucide="user-plus" size="32" color="#6366f1"></i>
+                <strong id="L-btn-survey">Survey</strong>
+            </div>
+            <div class="nav-card" onclick="showAdmin()">
+                <i data-lucide="shield-check" size="32" color="#10b981"></i>
+                <strong id="L-btn-admin">Admin</strong>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <label>Language / Язык</label>
+            <select id="langPicker" onchange="changeLang()">
+                <option value="en">English</option>
+                <option value="ru" selected>Русский</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="step1" class="step">
+        <h2 id="L-reg">Registration</h2>
+        <input type="text" id="fname" placeholder="First Name">
+        <input type="text" id="lname" placeholder="Last Name">
+        <button class="btn-action" onclick="toSurvey()">Next</button>
+    </div>
+
+    <div id="step2" class="step">
+        <h2 id="L-hello">Hello</h2>
+        <div class="option-group">
+            <button class="opt-btn" onclick="select(this, 'Active')">🎯 <span id="L-opt1">Active</span></button>
+            <button class="opt-btn" onclick="select(this, 'Relax')">🍷 <span id="L-opt2">Relax</span></button>
+            <button class="opt-btn" onclick="select(this, 'Nature')">🌲 <span id="L-opt3">Nature</span></button>
+        </div>
+        <button class="btn-action" onclick="finishSurvey()">Submit</button>
+    </div>
+
+    <div id="stepAdmin" class="step">
+        <h2><i data-lucide="activity"></i> Analytics Board</h2>
+        <div class="stats-box" style="background:#0f172a; padding:20px; border-radius:15px; margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between;">
+                <span id="L-total">Total Votes:</span>
+                <span id="vCount" style="color:var(--s); font-weight:bold;">0 / 100</span>
+            </div>
+            <div class="progress-bar"><div id="pFill" class="fill"></div></div>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-item">Active<span class="stat-val" id="s-act">0</span></div>
+            <div class="stat-item">Relax<span class="stat-val" id="s-rel">0</span></div>
+            <div class="stat-item">Nature<span class="stat-val" id="s-nat">0</span></div>
+        </div>
+
+        <button class="btn-action" id="analyzeBtn" onclick="runFinalAI()">Analyze & Book</button>
+        <button class="btn-action" style="margin-top:10px; background:#475569;" onclick="addSimData()">Simulate 100 Workers</button>
+        <p style="text-align:center; margin-top:15px;"><a href="#" onclick="location.reload()" style="color:#94a3b8; font-size:0.8rem;">Back to Home</a></p>
+    </div>
+
+    <div id="stepFinal" class="step">
+        <h2 id="L-res-title" style="color:var(--s);">Location Found!</h2>
+        <div id="venueBox" style="background:#1e293b; padding:20px; border-radius:15px; border-left:5px solid var(--s);"></div>
+        <div style="margin-top:20px; padding:15px; background:#000; border-radius:12px; font-size:12px; border:1px dashed #475569;">
+            <i data-lucide="map"></i> <span id="L-gps">Google Maps API Active</span>
+            <div id="coords" style="color:#94a3b8;">Locating...</div>
+        </div>
+        <button class="btn-action" style="margin-top:20px; background:#475569;" onclick="location.reload()">Reset</button>
+    </div>
+</div>
+
+<script>
+    lucide.createIcons();
+    let currentLang = 'ru';
+    let db = { Active: 0, Relax: 0, Nature: 0, total: 0 };
+    let userChoice = '';
+
+    const i18n = {
+        ru: { title: "Корпоративный Портал", sub: "Выберите уровень доступа", survey: "Опрос", admin: "Админ", reg: "Регистрация", hello: "Привет", opt1: "Актив", opt2: "Релакс", opt3: "Природа", total: "Всего голосов", res: "Место найдено", gps: "Google Maps подтвержден" },
+        en: { title: "Corporate Portal", sub: "Select access level", survey: "Survey", admin: "Admin", reg: "Registration", hello: "Hello", opt1: "Active", opt2: "Relax", opt3: "Nature", total: "Total Votes", res: "Location Found", gps: "Google Maps Verified" },
+        de: { title: "Unternehmensportal", sub: "Zugriffsebene wählen", survey: "Umfrage", admin: "Admin", reg: "Registrierung", hello: "Hallo", opt1: "Aktiv", opt2: "Relax", opt3: "Natur", total: "Stimmen insgesamt", res: "Ort gefunden", gps: "Google Maps verifiziert" },
+        fr: { title: "Portail d'entreprise", sub: "Choisir le niveau d'accès", survey: "Sondage", admin: "Admin", reg: "Inscription", hello: "Bonjour", opt1: "Actif", opt2: "Relax", opt3: "Nature", total: "Total des votes", res: "Lieu trouvé", gps: "Google Maps vérifié" }
+    };
+
+    function changeLang() {
+        currentLang = document.getElementById('langPicker').value;
+        const t = i18n[currentLang];
+        document.getElementById('L-main-title').innerText = t.title;
+        document.getElementById('L-main-sub').innerText = t.sub;
+        document.getElementById('L-btn-survey').innerText = t.survey;
+        document.getElementById('L-btn-admin').innerText = t.admin;
+        document.getElementById('L-reg').innerText = t.reg;
+        document.getElementById('L-total').innerText = t.total;
+        document.getElementById('L-res-title').innerText = t.res;
+        document.getElementById('L-gps').innerText = t.gps;
+    }
+
+    function startSurvey() { showStep('step1'); }
+    function showAdmin() { showStep('stepAdmin'); updateStats(); }
+
+    function toSurvey() {
+        const name = document.getElementById('fname').value;
+        if(!name) return alert("Enter name");
+        document.getElementById('L-hello').innerText = i18n[currentLang].hello + ", " + name;
+        showStep('step2');
+    }
+
+    function select(btn, val) {
+        document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        userChoice = val;
+    }
+
+    function finishSurvey() {
+        if(!userChoice) return alert("Select option");
+        db[userChoice]++;
+        db.total++;
+        alert("Success! Vote saved.");
+        location.reload(); // Возврат на главный экран
+    }
+
+    function addSimData() {
+        let i = 0;
+        const timer = setInterval(() => {
+            const keys = ['Active', 'Relax', 'Nature'];
+            db[keys[Math.floor(Math.random()*3)]]++;
+            db.total++;
+            updateStats();
+            i++;
+            if(i >= 100 || db.total >= 100) clearInterval(timer);
+        }, 30);
+    }
+
+    function updateStats() {
+        document.getElementById('vCount').innerText = `${db.total} / 100`;
+        document.getElementById('pFill').style.width = db.total + '%';
+        document.getElementById('s-act').innerText = db.Active;
+        document.getElementById('s-rel').innerText = db.Relax;
+        document.getElementById('s-nat').innerText = db.Nature;
+    }
+
+    function runFinalAI() {
+        if(db.total < 5) return alert("Need more data for analysis!");
+        showStep('stepFinal');
+        let winner = Object.keys(db).reduce((a, b) => db[a] > db[b] ? a : b);
+        const places = {
+            Active: "⚡ Laser Tag & Sport Arena",
+            Relax: "🍸 Sky Lounge & Restaurant",
+            Nature: "🌳 Riverside BBQ Park"
+        };
+        document.getElementById('venueBox').innerHTML = `<h3>${places[winner]}</h3><p>Based on ${db[winner]} preferences.</p>`;
+        
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(p => {
+                document.getElementById('coords').innerText = `LAT: ${p.coords.latitude.toFixed(3)} | LON: ${p.coords.longitude.toFixed(3)}`;
+            });
+        }
+    }
+
+    function showStep(id) {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+
+    // Инициализация языка при загрузке
+    changeLang();
+</script>
+</body>
+</html>
