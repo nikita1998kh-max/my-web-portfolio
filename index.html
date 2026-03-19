@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +16,9 @@
             background-color: #000;
         }
 
-        /* ТВОЙ ФОН */
+        /* ФОН С ТЕМНЫМ ГРАДИЕНТОМ */
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
                         url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80');
             background-attachment: fixed;
             background-size: cover;
@@ -27,115 +27,114 @@
 
         section {
             min-height: 100vh;
-            padding: 60px 20px;
+            padding: 80px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             width: 100%;
             text-align: center;
         }
 
-        /* ГЛАВНАЯ СТРАНИЦА - ТОЛЬКО NIKITA */
-        .hero h1 { font-size: 6rem; margin: 0; text-transform: uppercase; font-weight: 900; letter-spacing: -3px; }
-        .hero .subtitle { font-size: 1.2rem; color: #3ae374; margin: 10px 0; letter-spacing: 6px; font-weight: 700; }
-        .hero .description { font-size: 1.2rem; max-width: 700px; margin: 25px auto; line-height: 1.7; color: #ddd; }
+        /* HERO SECTION */
+        .hero h1 { font-size: clamp(4rem, 10vw, 7rem); margin: 0; text-transform: uppercase; font-weight: 900; letter-spacing: -3px; }
+        .hero .subtitle { font-size: 1.1rem; color: #3ae374; margin: 10px 0; letter-spacing: 8px; font-weight: 700; }
+        .hero .description { font-size: 1.1rem; max-width: 600px; margin: 30px auto; line-height: 1.6; color: #ccc; }
         
-        .tech-stack { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
+        .tech-stack { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
         .tech-item { 
-            font-size: 0.9rem; 
-            padding: 10px 20px; 
-            border: 2px solid #ffffff; 
+            font-size: 0.8rem; 
+            padding: 8px 16px; 
+            border: 1px solid rgba(255,255,255,0.3); 
             text-transform: uppercase; 
-            font-weight: 900;
+            font-weight: 700;
         }
 
-        /* КРАСИВАЯ СТРЕЛКА */
-        .scroll-arrow {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 4rem;
-            color: #3ae374;
-            text-decoration: none;
-            animation: bounce 2s infinite;
-        }
+        /* ЗАГОЛОВКИ СЕКЦИЙ */
+        .section-title { font-size: 3rem; margin-bottom: 60px; text-transform: uppercase; font-weight: 900; color: #fff; }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translate(-50%, 0);}
-            40% {transform: translate(-50%, -15px);}
-        }
-
-        /* СЕКЦИЯ ЛОГОТИПОВ - ЧИСТЫЕ КАРТИНКИ */
-        h2.section-title { font-size: 3.5rem; margin-bottom: 70px; text-transform: uppercase; font-weight: 900; }
-        
+        /* СЕТКА ЛОГОТИПОВ */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
         }
 
         .card {
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important; /* Убрал все тени */
-            padding: 0;
+            text-align: center;
+            transition: transform 0.3s ease;
         }
+        .card:hover { transform: translateY(-5px); }
 
+        /* ИСПРАВЛЕНИЕ ФОНА КАРТИНКИ */
         .card img { 
-            width: auto; 
-            max-width: 100%; 
-            height: 180px; 
+            width: 100%;
+            height: 200px;
             object-fit: contain;
+            background-color: #ffffff; /* Чистый белый фон для лого */
+            padding: 30px;
+            border-radius: 12px;
             margin-bottom: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            /* ЖЕСТКОЕ УДАЛЕНИЕ БЕЛОГО ФОНА */
-            mix-blend-mode: screen; 
-            filter: contrast(1.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .card h3 { font-size: 1.4rem; margin: 10px 0; text-transform: uppercase; }
-        .card p { font-size: 0.9rem; color: #888; }
+        .card h3 { font-size: 1.2rem; margin: 10px 0 5px; text-transform: uppercase; }
+        .card p { font-size: 0.9rem; color: #777; margin: 0; }
 
-        /* ОКНА ПРОЕКТОВ */
+        /* WEB PROJECTS */
         .web-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            margin-top: 50px;
         }
 
-        .web-window {
-            background: rgba(255, 255, 255, 0.03);
+        .project-link { text-decoration: none; color: inherit; display: block; }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: left;
+            height: 100%;
+            transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
 
-        .web-window .tag {
-            position: absolute;
-            bottom: 20px;
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #3ae374;
+        }
+
+        .project-card h3 { font-size: 1.5rem; margin: 0 0 15px 0; color: #fff; }
+        .project-card p { font-size: 0.95rem; color: #aaa; line-height: 1.5; margin-bottom: 25px; }
+
+        .tag {
+            display: inline-block;
             background: #3ae374;
             color: #000;
-            padding: 6px 15px;
+            padding: 4px 12px;
             font-weight: 900;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
+            border-radius: 4px;
+            margin-right: 8px;
         }
 
-        footer { padding: 80px 0; color: #333; font-size: 0.8rem; text-align: center; }
+        footer { padding: 100px 0 50px; color: #444; font-size: 0.8rem; text-align: center; letter-spacing: 2px; }
+        
+        .scroll-arrow {
+            margin-top: 40px;
+            display: inline-block;
+            font-size: 2rem;
+            color: #3ae374;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -145,7 +144,7 @@
             <h1>NIKITA</h1>
             <div class="subtitle">DEVELOPER & DESIGNER</div>
             <p class="description">
-                3 years of experience. I build functional web systems and high-impact visual identities. Handcrafted code, strategic design.
+                3 года опыта. Создаю функциональные веб-системы и визуальные стили. Чистый код и стратегический дизайн.
             </p>
             <div class="tech-stack">
                 <span class="tech-item">HTML / CSS</span>
@@ -153,8 +152,8 @@
                 <span class="tech-item">REACT</span>
                 <span class="tech-item">NODE.JS</span>
             </div>
+            <a href="#logos" class="scroll-arrow">↓</a>
         </div>
-        <a href="#logos" class="scroll-arrow">↓</a>
     </section>
 
     <section id="logos">
@@ -162,88 +161,59 @@
             <h2 class="section-title">My Logos</h2>
             <div class="grid">
                 <div class="card">
-                    <img src="logo-01.png.png" alt="L1">
+                    <img src="logo-01.png" alt="Geometric Animal">
                     <h3>Premium</h3>
-                    <p>Corporate style concept.</p>
+                    <p>Corporate style concept</p>
                 </div>
                 <div class="card">
-                    <img src="logo-aero.png.png" alt="L2">
+                    <img src="logo-aero.png" alt="Aeroglide">
                     <h3>Aero</h3>
-                    <p>Tech-focused design.</p>
+                    <p>Tech-focused design</p>
                 </div>
                 <div class="card">
-                    <img src="logo-auto.png.png" alt="L3">
+                    <img src="logo-auto.png" alt="Autoburst">
                     <h3>Auto</h3>
-                    <p>Automotive identity.</p>
+                    <p>Automotive identity</p>
                 </div>
                 <div class="card">
-                    <img src="logo-food.png.png" alt="L4">
-                    <h3>Food</h3>
-                    <p>Gastro brand identity.</p>
-                </div>
-                <div class="card">
-                    <img src="logo-hablo.png.png" alt="L5">
+                    <img src="logo-hablo.png" alt="Hablo">
                     <h3>Hablo</h3>
-                    <p>Social platform style.</p>
+                    <p>Social platform style</p>
                 </div>
             </div>
         </div>
-        <a href="#web" class="scroll-arrow">↓</a>
     </section>
 
     <section id="web">
         <div class="container">
             <h2 class="section-title">Web Projects</h2>
             <div class="web-grid">
-              <a href="office.html" style="text-decoration: none; color: inherit;">
-    <div class="card">
-        <h3>Staff Management System</h3>
-        <p>Production & Resource Control</p>
-    </div>
-</a>
-               <div class="card" onclick="window.location.href='test.html'">
-    <div class="card-content">
-        <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <polyline points="22,9 18,13 16,11"></polyline>
-            </svg>
-        </div>
-        <h3 class="card-title">Executive Leadership Assessment</h3>
-        <p class="card-description">
-            A professional psychological profiling tool designed to evaluate management efficiency and team-centric leadership. Supports 10 global languages with real-time result calculation.
-        </p>
-        <div class="card-footer">
-            <span class="tag">Psychology & HR</span>
-            <span class="tag">i18n</span>
-        </div>
-    </div>
-</div>
+                
+                <a href="office.html" class="project-link">
+                    <div class="project-card">
+                        <span class="tag">Management</span>
+                        <h3>Staff System</h3>
+                        <p>Комплексная система управления ресурсами и персоналом на производстве.</p>
+                    </div>
+                </a>
 
-               <div class="project-card" onclick="window.location.href='smarteventai.html'" style="cursor: pointer;">
-    <div class="project-content">
-        <div class="project-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 11l-2 2-2-2"></path>
-                <path d="M20 13V9"></path>
-                <circle cx="20" cy="6" r="1"></circle>
-            </svg>
-        </div>
-        <h3 class="project-title">SmartEvent AI</h3>
-        <p class="project-description">
-            Next-gen corporate logistics system. It automates employee surveys, analyzes preferences from 100+ profiles, and identifies the optimal venue using real-time Google Maps data.
-        </p>
-        <div class="project-tags">
-            <span class="tag">AI Logistics</span>
-            <span class="tag">Geo-Data</span>
-            <span class="tag">SaaS</span>
-        </div>
-    </div>
-</div>
+                <a href="test.html" class="project-link">
+                    <div class="project-card">
+                        <span class="tag">HR Tech</span>
+                        <h3>Leadership Assessment</h3>
+                        <p>Инструмент психологического профилирования руководителей. 10 языков, расчет результатов в реальном времени.</p>
+                    </div>
+                </a>
 
+                <a href="smarteventai.html" class="project-link">
+                    <div class="project-card">
+                        <span class="tag">AI & Geo</span>
+                        <h3>SmartEvent AI</h3>
+                        <p>Логистическая система на базе ИИ. Анализ предпочтений сотрудников и подбор площадок через Google Maps.</p>
+                    </div>
+                </a>
+
+            </div>
         </div>
     </section>
 
