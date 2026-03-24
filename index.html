@@ -64,16 +64,19 @@ h1 {
     transform: translateY(-10px);
 }
 
-/* 🔥 ВЫРЕЗАННЫЕ ЛОГО (ПРОЗРАЧНЫЙ ФОН) */
+/* 🔥 ВЫРЕЗАННЫЕ ЛОГО С ЦВЕТНЫМ КОНТУРОМ */
 .card img {
     width: 100%;
     height: 200px;
     object-fit: contain;
-    background: transparent; /* полностью прозрачный фон */
+    background: transparent; /* прозрачный фон */
     padding: 10px;
 
-    /* тень для выделения контура */
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+    /* цветной контур + glow */
+    filter: drop-shadow(0 0 3px #3ae374)
+            drop-shadow(0 0 6px #3ae374)
+            drop-shadow(0 0 12px #3ae374)
+            drop-shadow(0 5px 15px rgba(0,0,0,0.5));
 
     transform: rotate(-2deg);
     transition: 0.3s ease;
@@ -81,7 +84,10 @@ h1 {
 
 .card:hover img {
     transform: rotate(0deg) scale(1.1);
-    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.7));
+    filter: drop-shadow(0 0 5px #3ae374)
+            drop-shadow(0 0 12px #3ae374)
+            drop-shadow(0 0 25px #3ae374)
+            drop-shadow(0 10px 30px rgba(0,0,0,0.7));
 }
 
 .card h3 {
@@ -91,7 +97,6 @@ h1 {
 .card p {
     color: #777;
 }
-
 </style>
 </head>
 <body>
