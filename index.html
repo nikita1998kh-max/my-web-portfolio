@@ -3,254 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    [span_0](start_span)<title>Nikita Portfolio[span_0](end_span)</title>
-
-    [span_1](start_span)<meta name="description" content="Портфолио разработчика и дизайнера Nikita[span_1](end_span)">
+    <title>Nikita Portfolio</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        * [span_2](start_span){ box-sizing: border-box;[span_2](end_span) }
-
-        html {
-            [span_3](start_span)scroll-behavior: smooth;[span_3](end_span)
-        }
-
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
-            [span_4](start_span)margin: 0;[span_4](end_span)
-            [span_5](start_span)font-family: 'Inter', sans-serif;[span_5](end_span)
-            [span_6](start_span)color: #ffffff;[span_6](end_span)
-            [span_7](start_span)background-color: #000;[span_7](end_span)
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            background-color: #000;
             background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
-                        [span_8](start_span)url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80');[span_8](end_span)
-            [span_9](start_span)background-attachment: fixed;[span_9](end_span)
-            [span_10](start_span)background-size: cover;[span_10](end_span)
-            [span_11](start_span)background-position: center;[span_11](end_span)
+                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
         }
 
         section {
-            [span_12](start_span)min-height: 100vh;[span_12](end_span)
-            [span_13](start_span)padding: 80px 20px;[span_13](end_span)
-            [span_14](start_span)display: flex;[span_14](end_span)
-            [span_15](start_span)align-items: center;[span_15](end_span)
-            [span_16](start_span)justify-content: center;[span_16](end_span)
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
-            [span_17](start_span)max-width: 1100px;[span_17](end_span)
-            [span_18](start_span)width: 100%;[span_18](end_span)
-            [span_19](start_span)text-align: center;[span_19](end_span)
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
         }
 
-        /* HERO */
+        /* HERO SECTION */
         .hero h1 {
-            [span_20](start_span)font-size: clamp(3rem, 10vw, 7rem);[span_20](end_span)
-            [span_21](start_span)margin: 0;[span_21](end_span)
-            [span_22](start_span)text-transform: uppercase;[span_22](end_span)
-            [span_23](start_span)font-weight: 900;[span_23](end_span)
-            [span_24](start_span)letter-spacing: -3px;[span_24](end_span)
+            font-size: clamp(3rem, 10vw, 7rem);
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -3px;
         }
 
         .subtitle {
-            [span_25](start_span)font-size: 1.1rem;[span_25](end_span)
-            [span_26](start_span)color: #3ae374;[span_26](end_span)
-            [span_27](start_span)margin: 10px 0;[span_27](end_span)
-            [span_28](start_span)letter-spacing: 6px;[span_28](end_span)
-            [span_29](start_span)font-weight: 700;[span_29](end_span)
+            font-size: 1.1rem;
+            color: #3ae374;
+            margin: 10px 0;
+            letter-spacing: 6px;
+            font-weight: 700;
         }
 
         .description {
-            [span_30](start_span)font-size: 1.1rem;[span_30](end_span)
-            [span_31](start_span)max-width: 600px;[span_31](end_span)
-            [span_32](start_span)margin: 30px auto;[span_32](end_span)
-            [span_33](start_span)line-height: 1.6;[span_33](end_span)
-            [span_34](start_span)color: #ccc;[span_34](end_span)
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 30px auto;
+            line-height: 1.6;
+            color: #ccc;
         }
 
         .tech-stack {
-            [span_35](start_span)display: flex;[span_35](end_span)
-            [span_36](start_span)justify-content: center;[span_36](end_span)
-            [span_37](start_span)gap: 12px;[span_37](end_span)
-            [span_38](start_span)flex-wrap: wrap;[span_38](end_span)
-            [span_39](start_span)margin-top: 20px;[span_39](end_span)
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         .tech-item {
-            [span_40](start_span)font-size: 0.8rem;[span_40](end_span)
-            [span_41](start_span)padding: 8px 16px;[span_41](end_span)
-            [span_42](start_span)border: 1px solid rgba(255,255,255,0.3);[span_42](end_span)
-            [span_43](start_span)text-transform: uppercase;[span_43](end_span)
-            [span_44](start_span)font-weight: 700;[span_44](end_span)
-            [span_45](start_span)transition: 0.3s;[span_45](end_span)
+            font-size: 0.8rem;
+            padding: 8px 16px;
+            border: 1px solid rgba(255,255,255,0.3);
+            text-transform: uppercase;
+            font-weight: 700;
         }
 
-        .tech-item:hover {
-            [span_46](start_span)border-color: #3ae374;[span_46](end_span)
-            [span_47](start_span)color: #3ae374;[span_47](end_span)
-        }
-
+        /* LOGOS SECTION - ИСПРАВЛЕННЫЕ СТИЛИ */
         .section-title {
-            [span_48](start_span)font-size: 2.5rem;[span_48](end_span)
-            [span_49](start_span)margin-bottom: 60px;[span_49](end_span)
-            [span_50](start_span)text-transform: uppercase;[span_50](end_span)
-            [span_51](start_span)font-weight: 900;[span_51](end_span)
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            font-weight: 900;
         }
 
-        /* ЛОГОТИПЫ - ИСПРАВЛЕНО ЗДЕСЬ */
         .grid {
-            [span_52](start_span)display: grid;[span_52](end_span)
-            [span_53](start_span)grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));[span_53](end_span)
-            [span_54](start_span)gap: 40px;[span_54](end_span)
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
         }
 
         .card {
-            [span_55](start_span)transition: transform 0.3s ease;[span_55](end_span)
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
-            [span_56](start_span)transform: translateY(-8px);[span_56](end_span)
+            transform: translateY(-8px);
         }
 
         .card img {
-            [span_57](start_span)width: 100%;[span_57](end_span)
-            [span_58](start_span)height: 200px;[span_58](end_span)
-            [span_59](start_span)object-fit: contain;[span_59](end_span)
-            /* УБРАЛИ БЕЛЫЙ ФОН И ПАДДИНГИ */
-            background-color: transparent !important; 
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background-color: transparent !important; /* УБРАН БЕЛЫЙ ФОН ИЗ КОДА */
             padding: 0; 
             margin-bottom: 20px;
-            /* ЭТА МАГИЯ УБИРАЕТ БЕЛЫЙ ФОН С САМОЙ КАРТИНКИ */
+            
+            /* УБИРАЕТ БЕЛЫЙ ФОН С САМИХ КАРТИНОК */
             mix-blend-mode: screen; 
             filter: contrast(1.1); 
+            
+            transition: 0.3s;
         }
 
-        .card h3 {
-            [span_60](start_span)font-size: 1.2rem;[span_60](end_span)
-            [span_61](start_span)margin: 10px 0 5px;[span_61](end_span)
-        }
+        .card h3 { font-size: 1.2rem; margin: 10px 0 5px; }
+        .card p { font-size: 0.9rem; color: #777; }
 
-        .card p {
-            [span_62](start_span)font-size: 0.9rem;[span_62](end_span)
-            [span_63](start_span)color: #777;[span_63](end_span)
-        }
-
-        /* PROJECTS */
+        /* WEB PROJECTS SECTION */
         .web-grid {
-            [span_64](start_span)display: grid;[span_64](end_span)
-            [span_65](start_span)grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));[span_65](end_span)
-            [span_66](start_span)gap: 30px;[span_66](end_span)
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
 
-        .project-link {
-            [span_67](start_span)text-decoration: none;[span_67](end_span)
-            [span_68](start_span)color: inherit;[span_68](end_span)
-        }
+        .project-link { text-decoration: none; color: inherit; }
 
         .project-card {
-            [span_69](start_span)background: rgba(255, 255, 255, 0.05);[span_69](end_span)
-            [span_70](start_span)border: 1px solid rgba(255, 255, 255, 0.1);[span_70](end_span)
-            [span_71](start_span)border-radius: 15px;[span_71](end_span)
-            [span_72](start_span)padding: 30px;[span_72](end_span)
-            [span_73](start_span)text-align: left;[span_73](end_span)
-            [span_74](start_span)height: 100%;[span_74](end_span)
-            [span_75](start_span)transition: 0.3s;[span_75](end_span)
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: left;
+            transition: 0.3s;
         }
 
         .project-card:hover {
-            [span_76](start_span)background: rgba(255, 255, 255, 0.08);[span_76](end_span)
-            [span_77](start_span)border-color: #3ae374;[span_77](end_span)
-            [span_78](start_span)transform: translateY(-5px);[span_78](end_span)
+            border-color: #3ae374;
+            transform: translateY(-5px);
         }
 
         .tag {
-            [span_79](start_span)display: inline-block;[span_79](end_span)
-            [span_80](start_span)background: #3ae374;[span_80](end_span)
-            [span_81](start_span)color: #000;[span_81](end_span)
-            [span_82](start_span)padding: 4px 12px;[span_82](end_span)
-            [span_83](start_span)font-weight: 900;[span_83](end_span)
-            [span_84](start_span)font-size: 0.7rem;[span_84](end_span)
-            [span_85](start_span)border-radius: 4px;[span_85](end_span)
-            [span_86](start_span)margin-bottom: 10px;[span_86](end_span)
+            display: inline-block;
+            background: #3ae374;
+            color: #000;
+            padding: 4px 12px;
+            font-weight: 900;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            margin-bottom: 10px;
         }
 
         footer {
-            [span_87](start_span)padding: 80px 0 40px;[span_87](end_span)
-            [span_88](start_span)color: #444;[span_88](end_span)
-            [span_89](start_span)font-size: 0.8rem;[span_89](end_span)
-            [span_90](start_span)text-align: center;[span_90](end_span)
+            padding: 80px 0 40px;
+            color: #444;
+            font-size: 0.8rem;
+            text-align: center;
         }
 
         .scroll-arrow {
-            [span_91](start_span)margin-top: 40px;[span_91](end_span)
-            [span_92](start_span)display: inline-block;[span_92](end_span)
-            [span_93](start_span)font-size: 2rem;[span_93](end_span)
-            [span_94](start_span)color: #3ae374;[span_94](end_span)
-            [span_95](start_span)text-decoration: none;[span_95](end_span)
-            [span_96](start_span)transition: 0.3s;[span_96](end_span)
-        }
-
-        .scroll-arrow:hover {
-            [span_97](start_span)transform: translateY(5px);[span_97](end_span)
-        }
-
-        @media (max-width: 500px) {
-            .subtitle {
-                [span_98](start_span)letter-spacing: 3px;[span_98](end_span)
-            }
+            font-size: 2rem;
+            color: #3ae374;
+            text-decoration: none;
         }
     </style>
 </head>
-
 <body>
 
 <section class="hero">
     <div class="container">
-        [span_99](start_span)<h1>NIKITA[span_99](end_span)</h1>
-        [span_100](start_span)<div class="subtitle">DEVELOPER & DESIGNER[span_100](end_span)</div>
-
-        <p class="description">
-            [span_101](start_span)3 года опыта.[span_101](end_span)
-            [span_102](start_span)Создаю функциональные веб-системы и визуальные стили.[span_102](end_span)
-        </p>
-
+        <h1>NIKITA</h1>
+        <div class="subtitle">DEVELOPER & DESIGNER</div>
+        <p class="description">3 года опыта. Создаю функциональные веб-системы.</p>
         <div class="tech-stack">
             <span class="tech-item">HTML / CSS</span>
             <span class="tech-item">JavaScript</span>
             <span class="tech-item">React</span>
-            <span class="tech-item">Node.js</span>
         </div>
-
         <a href="#logos" class="scroll-arrow">↓</a>
     </div>
 </section>
 
 <section id="logos">
     <div class="container">
-        [span_103](start_span)<h2 class="section-title">My Logos[span_103](end_span)</h2>
-
+        <h2 class="section-title">My Logos</h2>
         <div class="grid">
             <div class="card">
-                [span_104](start_span)<img src="logo-01.png" alt="Geometric animal logo" loading="lazy">[span_104](end_span)
-                [span_105](start_span)<h3>Premium</h3>[span_105](end_span)
-                [span_106](start_span)<p>Corporate style concept</p>[span_106](end_span)
+                <img src="logo-01.png" alt="Premium">
+                <h3>Premium</h3>
+                <p>Corporate style concept</p>
             </div>
-
             <div class="card">
-                [span_107](start_span)<img src="logo-aero.png" alt="Aeroglide logo" loading="lazy">[span_107](end_span)
-                [span_108](start_span)<h3>Aero</h3>[span_108](end_span)
-                [span_109](start_span)<p>Tech-focused design</p>[span_109](end_span)
+                <img src="logo-aero.png" alt="Aero">
+                <h3>Aero</h3>
+                <p>Tech-focused design</p>
             </div>
-
             <div class="card">
-                [span_110](start_span)<img src="logo-auto.png" alt="Autoburst logo" loading="lazy">[span_110](end_span)
-                [span_111](start_span)<h3>Auto</h3>[span_111](end_span)
-                [span_112](start_span)<p>Automotive identity</p>[span_112](end_span)
+                <img src="logo-auto.png" alt="Auto">
+                <h3>Auto</h3>
+                <p>Automotive identity</p>
             </div>
-
             <div class="card">
-                [span_113](start_span)<img src="logo-hablo.png" alt="Hablo logo" loading="lazy">[span_113](end_span)
-                [span_114](start_span)<h3>Hablo</h3>[span_114](end_span)
-                [span_115](start_span)<p>Social platform style</p>[span_115](end_span)
+                <img src="logo-hablo.png" alt="Hablo">
+                <h3>Hablo</h3>
+                <p>Social platform style</p>
             </div>
         </div>
     </div>
@@ -259,29 +213,26 @@
 <section id="web">
     <div class="container">
         <h2 class="section-title">Web Projects</h2>
-
         <div class="web-grid">
             <a href="office.html" class="project-link">
                 <div class="project-card">
-                    [span_116](start_span)<span class="tag">Management</span>[span_116](end_span)
-                    [span_117](start_span)<h3>Staff System</h3>[span_117](end_span)
-                    [span_118](start_span)<p>Система управления персоналом.</p>[span_118](end_span)
+                    <span class="tag">Management</span>
+                    <h3>Staff System</h3>
+                    <p>Система управления персоналом.</p>
                 </div>
             </a>
-
             <a href="test.html" class="project-link">
                 <div class="project-card">
-                    [span_119](start_span)<span class="tag">HR Tech</span>[span_119](end_span)
-                    [span_120](start_span)<h3>Leadership Assessment</h3>[span_120](end_span)
-                    [span_121](start_span)<p>Психологическое профилирование руководителей.</p>[span_121](end_span)
+                    <span class="tag">HR Tech</span>
+                    <h3>Leadership Assessment</h3>
+                    <p>Психологическое профилирование.</p>
                 </div>
             </a>
-
             <a href="smarteventai.html" class="project-link">
                 <div class="project-card">
-                    [span_122](start_span)<span class="tag">AI</span>[span_122](end_span)
-                    [span_123](start_span)<h3>SmartEvent AI</h3>[span_123](end_span)
-                    [span_124](start_span)<p>ИИ-платформа для подбора мероприятий.</p>[span_124](end_span)
+                    <span class="tag">AI</span>
+                    <h3>SmartEvent AI</h3>
+                    <p>ИИ-платформа для подбора мероприятий.</p>
                 </div>
             </a>
         </div>
@@ -289,7 +240,7 @@
 </section>
 
 <footer>
-    <p>&copy; 2026 NIKITA. [span_125](start_span)ALL RIGHTS RESERVED.[span_125](end_span)</p>
+    <p>&copy; 2026 NIKITA. ALL RIGHTS RESERVED.</p>
 </footer>
 
 </body>
